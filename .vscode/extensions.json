@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "vscjava.vscode-java-pack",
+    "vscjava.vscode-gradle",
+    "humao.rest-client",
+    "angular.ng-template",
+    "donjayamanne.githistory"
+  ]
+}

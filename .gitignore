@@ -1,0 +1,23 @@
+# Gradle
+.gradle/
+build/
+bin/
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+
+# IDE
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Bundle de distribution
+*.bundle

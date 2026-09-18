@@ -1,0 +1,6 @@
+plugins {
+    // autorise Gradle à télécharger lui-même le JDK de la toolchain
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+rootProject.name = 'tp-back'

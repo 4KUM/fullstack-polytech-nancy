@@ -1,0 +1,7 @@
+# Normalisation des fins de ligne : LF dans le dépôt, CRLF dans la copie de travail
+# sous Windows. Évite les diffs complets lors du passage d'une machine à l'autre.
+* text=auto
+
+*.bat   text eol=crlf
+gradlew text eol=lf
+*.jar   binary

@@ -1,12 +1,13 @@
 package org.polytech.spring;
 
-import com.sun.jdi.event.StepEvent;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class PatientDatabase implements PatientStore {
     private final List<Patient> patients = new ArrayList<>();
 

@@ -2,11 +2,14 @@ package org.polytech.spring;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PatientService {
 
     private final PatientStore patientStore;
-    public PatientService(PatientStore patientStore) {
+    public PatientService(@Qualifier("patientDatabase") PatientStore patientStore) {
         this.patientStore = patientStore;
     }
 

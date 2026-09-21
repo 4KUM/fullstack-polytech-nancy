@@ -1,0 +1,4 @@
+### Message de salutation
+GET http://localhost:8080/hello
+//Accept: application/xml
+

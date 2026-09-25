@@ -1,5 +1,6 @@
-package org.polytech.spring.Films;
+package org.polytech.spring.Films.Repository;
 
+import org.polytech.spring.Films.Entity.Film;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -34,4 +35,6 @@ public class FilmRepo {
     public boolean deleteById(Long id) {
         return films.remove(id) != null;
     }
+
+
 }

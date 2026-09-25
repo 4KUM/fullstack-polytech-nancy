@@ -1,9 +1,11 @@
-package org.polytech.spring.Films;
+package org.polytech.spring.Films.Controller;
 
+import org.polytech.spring.Films.Entity.Film;
+import org.polytech.spring.Films.Service.FilmService;
+import org.polytech.spring.Films.Entity.Genre;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.net.URI;
 import java.util.List;
 
@@ -19,8 +21,10 @@ public class Controller {
 
     //GET /films
     @GetMapping
-    public List<Film> getAll() {
-        return filmService.findAll();
+    public List<Film> findAll(
+            @RequestParam(required = false) String realisateur,
+            @RequestParam(required = false) Genre genre) {
+        return filmService.findAll(realisateur, genre);
     }
 
     //GET /films/1
@@ -39,6 +43,7 @@ public class Controller {
                 .toUri();
         return ResponseEntity.created(location).body(saved);
     }
+
     //PUT /films/1
     @PutMapping("/{id:\\d+}")
     public Film update(@PathVariable Long id, @RequestBody Film film) {
@@ -51,4 +56,5 @@ public class Controller {
         filmService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 }

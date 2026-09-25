@@ -1,4 +1,4 @@
-package org.polytech.spring.Films;
+package org.polytech.spring.Films.Exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -9,3 +9,5 @@ public class FilmNotFoundException extends RuntimeException {
         super("Film introuvable : " + id);
     }
 }
+
+

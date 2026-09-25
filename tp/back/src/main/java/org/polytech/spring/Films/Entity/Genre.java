@@ -1,4 +1,4 @@
-package org.polytech.spring.Films;
+package org.polytech.spring.Films.Entity;
 
 public enum Genre {
     ACTION("Action"),

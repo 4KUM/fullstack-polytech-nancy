@@ -70,3 +70,67 @@ Accept: application/json
 
 ### Suppression d'un film inconnu
 DELETE http://localhost:8080/films/9999
+
+//Pour aller plus loin
+### Création d'un film pour le test du filtrage
+POST http://localhost:8080/films
+Content-Type: application/json
+
+{
+  "titre": "Interstellar",
+  "realisateur": "Christopher Nolan",
+  "dateSortie": "2014-11-07",
+  "genre": "SCIENCE_FICTION"
+}
+
+### Recherche par réalisateur
+GET http://localhost:8080/films?realisateur=Christopher Nolan
+Accept: application/json
+
+### Recherche par genre
+GET http://localhost:8080/films?genre=SCIENCE_FICTION
+Accept: application/json
+
+### Recherche par genre et réalisateur
+GET http://localhost:8080/films?realisateur=Christopher Nolan&genre=SCIENCE_FICTION
+Accept: application/json
+
+### Ajouter un commentaire au film 1
+POST http://localhost:8080/films/1/commentaires
+Content-Type: application/json
+
+{ "auteur": "Mohamad", "message": "Un chef-d'œuvre de la SF." }
+
+### Deuxième commentaire
+POST http://localhost:8080/films/1/commentaires
+Content-Type: application/json
+
+{ "auteur": "Alice", "message": "La bande-son est incroyable." }
+
+### Commentaires du film 1 (attendu : 2 commentaires)
+GET http://localhost:8080/films/1/commentaires
+Accept: application/json
+
+### Commentaire sur un film inconnu (attendu : 404)
+POST http://localhost:8080/films/9999/commentaires
+Content-Type: application/json
+
+{ "auteur": "Test", "message": "Test" }
+
+### Commentaire invalide (attendu : 400)
+POST http://localhost:8080/films/1/commentaires
+Content-Type: application/json
+
+{ "auteur": "Test" }
+
+### Modifier le commentaire 1
+PUT http://localhost:8080/commentaires/1
+Content-Type: application/json
+
+{ "auteur": "Mohamad", "message": "Toujours un chef-d'œuvre, revu en 2026." }
+
+### Supprimer le commentaire 2 (attendu : 204)
+DELETE http://localhost:8080/commentaires/2
+
+### Supprimer un commentaire inconnu (attendu : 404)
+DELETE http://localhost:8080/commentaires/9999

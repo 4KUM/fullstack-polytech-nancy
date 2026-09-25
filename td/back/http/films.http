@@ -1,12 +1,7 @@
-### Liste des films
-GET http://localhost:8080/films
-Accept: application/json
+# Lancer les requêtes dans l'ordre : les films sont stockés en mémoire,
+# la liste est vide à chaque redémarrage de l'application.
 
-### Film identifié par son identifiant
-GET http://localhost:8080/films/1
-Accept: application/json
-
-### Création — réponse attendue : 201 Created avec en-tête Location
+### Création
 POST http://localhost:8080/films
 Content-Type: application/json
 
@@ -17,7 +12,26 @@ Content-Type: application/json
   "genre": "SCIENCE_FICTION"
 }
 
-### Création invalide — réponse attendue : 400 au format ProblemDetail
+### Deuxième création
+POST http://localhost:8080/films
+Content-Type: application/json
+
+{
+  "titre": "Inception",
+  "realisateur": "Christopher Nolan",
+  "dateSortie": "2010-07-16",
+  "genre": "THRILLER"
+}
+
+### Liste des films
+GET http://localhost:8080/films
+Accept: application/json
+
+### Film identifié par son identifiant
+GET http://localhost:8080/films/1
+Accept: application/json
+
+### Création invalide (sans titre)
 POST http://localhost:8080/films
 Content-Type: application/json
 
@@ -30,15 +44,29 @@ PUT http://localhost:8080/films/1
 Content-Type: application/json
 
 {
-  "titre": "Blade Runner",
+  "titre": "Blade Runner (Final Cut)",
   "realisateur": "Ridley Scott",
-  "dateSortie": "1982-06-25",
+  "dateSortie": "2007-10-05",
   "genre": "SCIENCE_FICTION"
 }
 
-### Suppression — réponse attendue : 204 No Content
+### Mise à jour d'un film inconnu
+PUT http://localhost:8080/films/9999
+Content-Type: application/json
+
+{
+  "titre": "Fantôme",
+  "realisateur": "Personne",
+  "dateSortie": "2000-01-01",
+  "genre": "DRAME"
+}
+
+### Suppression
 DELETE http://localhost:8080/films/1
 
-### Identifiant inconnu — réponse attendue : 404 au format ProblemDetail
-GET http://localhost:8080/films/9999
+### Film supprimé
+GET http://localhost:8080/films/1
 Accept: application/json
+
+### Suppression d'un film inconnu
+DELETE http://localhost:8080/films/9999

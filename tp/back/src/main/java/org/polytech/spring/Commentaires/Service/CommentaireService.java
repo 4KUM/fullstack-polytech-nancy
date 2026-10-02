@@ -1,48 +1,55 @@
 package org.polytech.spring.Commentaires.Service;
 
 
+import org.polytech.spring.Commentaires.DTO.CommentaireCreationDTO;
+import org.polytech.spring.Commentaires.DTO.CommentaireDTO;
 import org.polytech.spring.Commentaires.Entity.Commentaire;
 import org.polytech.spring.Commentaires.Exception.CommentaireNotFoundException;
+import org.polytech.spring.Commentaires.Mapper.CommentaireMapper;
 import org.polytech.spring.Films.Entity.Film;
 import org.polytech.spring.Films.Exception.FilmNotFoundException;
-import org.polytech.spring.Films.Repository.FilmRepo;
+import org.polytech.spring.Films.Repository.FilmRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
+@Transactional
 public class CommentaireService {
 
-        private final FilmRepo filmRepo;
-        private final AtomicLong commentaireId = new AtomicLong();
+        private final FilmRepository filmRepo;
+        private final CommentaireMapper commentaireMapper;
 
-        public CommentaireService(FilmRepo filmRepo) {
+        public CommentaireService(FilmRepository filmRepo, CommentaireMapper commentaireMapper) {
             this.filmRepo = filmRepo;
+            this.commentaireMapper = commentaireMapper;
         }
 
-        public List<Commentaire> findByFilm(Long filmId) {
-            return getFilm(filmId).getCommentaires();
+        public List<CommentaireDTO> findByFilm(Long filmId) {
+            return getFilm(filmId).getCommentaires().stream()
+                    .map(commentaireMapper::toDto)
+                    .toList();
         }
 
-        public Commentaire create(Long filmId, Commentaire commentaire) {
+        public CommentaireDTO create(Long filmId, CommentaireCreationDTO dto) {
             Film film = getFilm(filmId);
-            validate(commentaire);
-            commentaire.setId(commentaireId.incrementAndGet());
+            validate(dto);
+            Commentaire commentaire = commentaireMapper.toEntity(dto);
             commentaire.setDate(LocalDate.now());
             film.getCommentaires().add(commentaire);
-            return commentaire;
+            filmRepo.flush(); // cascade : INSERT du commentaire, qui reçoit son id
+            return commentaireMapper.toDto(commentaire);
         }
 
-        public Commentaire update(Long id, Commentaire modif) {
-            validate(modif);
+        public CommentaireDTO update(Long id, CommentaireCreationDTO dto) {
+            validate(dto);
             Commentaire commentaire = findById(id);
-            commentaire.setAuteur(modif.getAuteur());
-            commentaire.setMessage(modif.getMessage());
-            return commentaire;
+            commentaireMapper.update(commentaire, dto);
+            return commentaireMapper.toDto(commentaire);
         }
 
         public void delete(Long id) {
@@ -67,9 +74,9 @@ public class CommentaireService {
                     .orElseThrow(() -> new FilmNotFoundException(filmId));
         }
 
-        private void validate(Commentaire c) {
-            if (c.getAuteur() == null || c.getAuteur().isBlank()
-                    || c.getMessage() == null || c.getMessage().isBlank()) {
+        private void validate(CommentaireCreationDTO dto) {
+            if (dto.auteur() == null || dto.auteur().isBlank()
+                    || dto.message() == null || dto.message().isBlank()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                         "L'auteur et le message sont obligatoires");
             }

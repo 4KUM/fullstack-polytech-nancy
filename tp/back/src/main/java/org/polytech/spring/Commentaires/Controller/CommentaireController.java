@@ -1,6 +1,7 @@
 package org.polytech.spring.Commentaires.Controller;
 
-import org.polytech.spring.Commentaires.Entity.Commentaire;
+import org.polytech.spring.Commentaires.DTO.CommentaireCreationDTO;
+import org.polytech.spring.Commentaires.DTO.CommentaireDTO;
 import org.polytech.spring.Commentaires.Service.CommentaireService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,23 +20,23 @@ public class CommentaireController {
     }
 
     @GetMapping("/films/{filmId}/commentaires")
-    public List<Commentaire> findByFilm(@PathVariable Long filmId) {
+    public List<CommentaireDTO> findByFilm(@PathVariable Long filmId) {
         return commentaireService.findByFilm(filmId);
     }
 
     @PostMapping("/films/{filmId}/commentaires")
-    public ResponseEntity<Commentaire> create(@PathVariable Long filmId,
-                                              @RequestBody Commentaire commentaire) {
-        Commentaire saved = commentaireService.create(filmId, commentaire);
+    public ResponseEntity<CommentaireDTO> create(@PathVariable Long filmId,
+                                                 @RequestBody CommentaireCreationDTO commentaire) {
+        CommentaireDTO saved = commentaireService.create(filmId, commentaire);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/commentaires/{id}")
-                .buildAndExpand(saved.getId())
+                .buildAndExpand(saved.id())
                 .toUri();
         return ResponseEntity.created(location).body(saved);
     }
 
     @PutMapping("/commentaires/{id}")
-    public Commentaire update(@PathVariable Long id, @RequestBody Commentaire commentaire) {
+    public CommentaireDTO update(@PathVariable Long id, @RequestBody CommentaireCreationDTO commentaire) {
         return commentaireService.update(id, commentaire);
     }
 

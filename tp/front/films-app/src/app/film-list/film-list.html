@@ -1,0 +1,19 @@
+<h2 class="title">Les films</h2>
+
+@if (films$ | async; as films) {
+  <div class="grid">
+    @for (f of films; track f.id) {
+      <article class="card">
+        <span class="badge">{{ f.genre }}</span>
+        <h3>{{ f.titre }}</h3>
+        <p class="real">🎥 {{ f.realisateur }}</p>
+        <p class="date">📅 {{ f.dateSortie | date:"dd/MM/yyyy" }}</p>
+        <p class="acteurs">👥 {{ f.acteurs.length }} acteur(s)</p>
+      </article>
+    } @empty {
+      <p class="vide">Aucun film pour le moment.</p>
+    }
+  </div>
+} @else {
+  <p class="vide">Chargement...</p>
+}

@@ -1,0 +1,50 @@
+.title {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(76, 29, 149, 0.18);
+}
+
+.card h3 {
+  margin: 0.6rem 0;
+  font-size: 1.2rem;
+}
+
+.badge {
+  display: inline-block;
+  background: #ede9fe;
+  color: #6d28d9;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+.real, .date, .acteurs {
+  margin: 0.3rem 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.vide {
+  text-align: center;
+  color: #94a3b8;
+  padding: 2rem;
+}

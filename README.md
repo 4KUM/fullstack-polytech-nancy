@@ -50,13 +50,13 @@ ng new tp-front      # CSS, sans SSR, « None » pour les outils IA
 ### TD
 
 Le back est généré depuis [start.spring.io](https://start.spring.io) ou depuis l'IDE,
-**dans `td/back`**, avec la dépendance Spring Web. Le front est généré avec `ng new`,
-**dans `td/front`**.
+**dans `tdp`**, avec la dépendance Spring Web. Le front est généré avec `ng new`,
+**dans `tdp`**.
 
 ## Requêtes HTTP
 
 Ni collection Postman ni collection Bruno : les requêtes sont versionnées dans des fichiers
-`.http` placés dans `td/back/http` et exécutées par l'extension VSCode
+`.http` placés dans `tdp` et exécutées par l'extension VSCode
 [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client),
 via l'action *Send Request* affichée au-dessus de chaque requête. Un fichier par ressource,
 requêtes séparées par `###`. `films.http` contient le squelette du TD 1.

@@ -29,7 +29,7 @@ public class Controller {
     }
 
     //GET /films/1
-    @GetMapping("/{id:\\d+}")
+    @GetMapping("/{id}")
     public FilmDTO getById(@PathVariable Long id) {
         return filmService.findById(id);
     }
@@ -46,13 +46,13 @@ public class Controller {
     }
 
     //PUT /films/1
-    @PutMapping("/{id:\\d+}")
+    @PutMapping("/{id}")
     public FilmDTO update(@PathVariable Long id, @RequestBody FilmCreationDTO film) {
         return filmService.update(id, film);
     }
 
     //DELETE /films/1 -
-    @DeleteMapping("/{id:\\d+}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         filmService.delete(id);
         return ResponseEntity.noContent().build();

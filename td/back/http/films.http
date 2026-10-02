@@ -96,19 +96,19 @@ GET http://localhost:8080/films?realisateur=Christopher Nolan&genre=SCIENCE_FICT
 Accept: application/json
 
 ### Ajouter un commentaire au film 1
-POST http://localhost:8080/films/1/commentaires
+POST http://localhost:8080/films/2/commentaires
 Content-Type: application/json
 
 { "auteur": "Mohamad", "message": "Un chef-d'œuvre de la SF." }
 
 ### Deuxième commentaire
-POST http://localhost:8080/films/1/commentaires
+POST http://localhost:8080/films/2/commentaires
 Content-Type: application/json
 
 { "auteur": "Alice", "message": "La bande-son est incroyable." }
 
 ### Commentaires du film 1 (attendu : 2 commentaires)
-GET http://localhost:8080/films/1/commentaires
+GET http://localhost:8080/films/2/commentaires
 Accept: application/json
 
 ### Commentaire sur un film inconnu (attendu : 404)
@@ -118,13 +118,13 @@ Content-Type: application/json
 { "auteur": "Test", "message": "Test" }
 
 ### Commentaire invalide (attendu : 400)
-POST http://localhost:8080/films/1/commentaires
+POST http://localhost:8080/films/2/commentaires
 Content-Type: application/json
 
 { "auteur": "Test" }
 
 ### Modifier le commentaire 1
-PUT http://localhost:8080/commentaires/1
+PUT http://localhost:8080/commentaires/2
 Content-Type: application/json
 
 { "auteur": "Mohamad", "message": "Toujours un chef-d'œuvre, revu en 2026." }
@@ -134,3 +134,13 @@ DELETE http://localhost:8080/commentaires/2
 
 ### Supprimer un commentaire inconnu (attendu : 404)
 DELETE http://localhost:8080/commentaires/9999
+
+### Ajouter un acteur au film 2 (attendu : 201)
+POST http://localhost:8080/films/2/acteurs
+Content-Type: application/json
+
+{ "nom": "DiCaprio", "prenom": "Leonardo" }
+
+### Acteurs du film 2 (attendu : 1 acteur)
+GET http://localhost:8080/films/2/acteurs
+Accept: application/json

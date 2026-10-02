@@ -41,7 +41,7 @@ public class CommentaireService {
             Commentaire commentaire = commentaireMapper.toEntity(dto);
             commentaire.setDate(LocalDate.now());
             film.getCommentaires().add(commentaire);
-            filmRepo.flush(); // cascade : INSERT du commentaire, qui reçoit son id
+            filmRepo.flush();
             return commentaireMapper.toDto(commentaire);
         }
 

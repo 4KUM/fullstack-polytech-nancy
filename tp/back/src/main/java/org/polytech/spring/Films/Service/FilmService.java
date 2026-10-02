@@ -84,8 +84,6 @@ public class FilmService {
     public FilmDTO update(Long id, FilmCreationDTO dto) {
         validate(dto);
         Film film = getFilm(id);
-        // l'entité est gérée par JPA dans la transaction : les modifications sont sauvegardées automatiquement,
-        // et ses commentaires sont conservés
         filmMapper.update(film, dto);
         return filmMapper.toDto(film);
     }

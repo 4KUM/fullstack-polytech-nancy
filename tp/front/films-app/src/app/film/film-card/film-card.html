@@ -1,9 +1,14 @@
-<article class="card">
-  <span class="badge">{{ film().genre }}</span>
+<article class="card" [ngClass]="{ ancien: estAncien(), recent: !estAncien() }">
+  <div class="etiquettes">
+    <span class="badge" [ngClass]="{ 'science-fiction': estScienceFiction() }">{{ film().genre }}</span>
+    @if (estAncien()) {
+      <span class="badge-ancien">Avant 2000</span>
+    }
+  </div>
   <h3>
     <a [routerLink]="['/films', film().id]">{{ film().titre }}</a>
   </h3>
-  <p class="info">Réalisateur : {{ film().realisateur }}</p>
+  <p class="info" [ngStyle]="{ color: estDeNolan() ? '#dc2626' : null }">Réalisateur : {{ film().realisateur }}</p>
   <p class="info">Sortie : {{ film().dateSortie | date:"dd/MM/yyyy" }}</p>
   <p class="info">{{ film().acteurs.length }} acteur(s)</p>
   <button type="button" class="supprimer" (click)="onSupprimer()">Supprimer</button>

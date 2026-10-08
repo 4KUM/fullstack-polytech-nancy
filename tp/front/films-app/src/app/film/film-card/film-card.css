@@ -29,6 +29,30 @@
   color: #6d28d9;
 }
 
+.ancien {
+  border-left: 4px solid #64748b;
+  background: #f8fafc;
+}
+
+.recent {
+  border-left: 4px solid #6d28d9;
+}
+
+.etiquettes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.badge-ancien {
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
 .badge {
   align-self: flex-start;
   background: #ede9fe;
@@ -37,6 +61,11 @@
   font-weight: 600;
   padding: 0.25rem 0.7rem;
   border-radius: 999px;
+}
+
+.badge.science-fiction {
+  background: #fef08a;
+  color: #854d0e;
 }
 
 .info {

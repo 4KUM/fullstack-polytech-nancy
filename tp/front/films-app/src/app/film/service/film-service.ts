@@ -28,4 +28,8 @@ export class FilmService {
   modifier(id: number, f: Partial<Film>): Observable<Film> {
     return this.http.put<Film>(`${this.url}/${id}`, f);
   }
+
+  supprimer(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
+  }
 }

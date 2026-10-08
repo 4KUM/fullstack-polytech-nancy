@@ -3,18 +3,16 @@
   <a routerLink="/films/nouveau" class="bouton">Ajouter un film</a>
 </div>
 
-@if (films$ | async; as films) {
+@if (erreur()) {
+  <p class="erreur">{{ erreur() }}</p>
+}
+
+@if (films(); as films) {
   <div class="grid">
     @for (f of films; track f.id) {
-      <a class="card" [routerLink]="['/films', f.id]">
-        <span class="badge">{{ f.genre }}</span>
-        <h3>{{ f.titre }}</h3>
-        <p class="real">Réalisateur : {{ f.realisateur }}</p>
-        <p class="date">Sortie : {{ f.dateSortie | date:"dd/MM/yyyy" }}</p>
-        <p class="acteurs">{{ f.acteurs.length }} acteur(s)</p>
-      </a>
+      <app-film-card [film]="f" (supprimer)="onSupprimer($event)" />
     } @empty {
-      <p class="vide">Aucun film pour le moment.</p>
+      <p class="vide">Aucun film enregistré.</p>
     }
   </div>
 } @else {

@@ -3,6 +3,13 @@
 @if (acteur$ | async; as acteur) {
   <article class="detail">
     <h2>{{ acteur.prenom }} {{ acteur.nom }}</h2>
+    <div class="actions">
+      <a [routerLink]="['/acteurs', acteur.id, 'modifier']" class="bouton">Modifier</a>
+      <button type="button" class="supprimer" (click)="supprimer(acteur)">Supprimer</button>
+    </div>
+    @if (erreur()) {
+      <p class="erreur-action">{{ erreur() }}</p>
+    }
 
     <h3>Filmographie</h3>
     @if (films$ | async; as films) {

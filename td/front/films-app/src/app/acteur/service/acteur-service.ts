@@ -17,6 +17,18 @@ export class ActeurService {
     return this.http.get<Acteur>(`${this.url}/${id}`);
   }
 
+  creer(a: Partial<Acteur>): Observable<Acteur> {
+    return this.http.post<Acteur>(this.url, a);
+  }
+
+  modifier(id: number, a: Partial<Acteur>): Observable<Acteur> {
+    return this.http.put<Acteur>(`${this.url}/${id}`, a);
+  }
+
+  supprimer(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
+  }
+
   getFilms(id: number): Observable<Film[]> {
     return this.http.get<Film[]>(`${this.url}/${id}/films`).pipe(
       catchError((e: HttpErrorResponse) => {

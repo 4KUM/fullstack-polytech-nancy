@@ -18,8 +18,12 @@ public class ActeurMapper {
 
     public Acteur toEntity(ActeurCreationDTO dto) {
         Acteur acteur = new Acteur();
+        update(acteur, dto);
+        return acteur;
+    }
+
+    public void update(Acteur acteur, ActeurCreationDTO dto) {
         acteur.setNom(dto.nom());
         acteur.setPrenom(dto.prenom());
-        return acteur;
     }
 }

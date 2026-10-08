@@ -45,6 +45,26 @@ public class ActeurService {
         return acteurMapper.toDto(getActeur(id));
     }
 
+    public ActeurDTO create(ActeurCreationDTO dto) {
+        validate(dto);
+        return acteurMapper.toDto(acteurRepo.save(acteurMapper.toEntity(dto)));
+    }
+
+    public ActeurDTO update(Long id, ActeurCreationDTO dto) {
+        Acteur acteur = getActeur(id);
+        validate(dto);
+        acteurMapper.update(acteur, dto);
+        return acteurMapper.toDto(acteur);
+    }
+
+    public void delete(Long id) {
+        Acteur acteur = getActeur(id);
+        for (Film film : acteur.getFilms()) {
+            film.getActeurs().remove(acteur);
+        }
+        acteurRepo.delete(acteur);
+    }
+
     public List<FilmDTO> findFilms(Long acteurId) {
         getActeur(acteurId);
         return filmRepo.findFilmsDeLActeur(acteurId).stream()

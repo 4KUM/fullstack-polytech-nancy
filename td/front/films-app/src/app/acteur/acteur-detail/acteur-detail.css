@@ -54,3 +54,36 @@ p.vide {
   text-align: center;
   padding: 2rem;
 }
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.bouton {
+  background: #6d28d9;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.supprimer {
+  font: inherit;
+  background: none;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.supprimer:hover {
+  background: #fef2f2;
+}
+
+.erreur-action {
+  color: #dc2626;
+  margin-top: 0.75rem;
+}

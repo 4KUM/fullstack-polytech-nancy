@@ -1,6 +1,21 @@
+.entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
 .title {
   font-size: 1.6rem;
-  margin-bottom: 1.5rem;
+  margin: 0;
+}
+
+.bouton {
+  background: #6d28d9;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
 }
 
 .grid {

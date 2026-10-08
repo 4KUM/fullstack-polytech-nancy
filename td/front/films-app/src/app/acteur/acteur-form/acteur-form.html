@@ -1,0 +1,27 @@
+<a [routerLink]="enEdition() ? ['/acteurs', acteurId()] : ['/acteurs']" class="retour">Annuler</a>
+
+<h2 class="title">{{ enEdition() ? "Modifier l'acteur" : "Nouvel acteur" }}</h2>
+
+<form #f="ngForm" (ngSubmit)="enregistrer()" class="formulaire">
+  <label>
+    Prénom
+    <input name="prenom" [(ngModel)]="prenom" required #prenomCtrl="ngModel" />
+  </label>
+  @if (prenomCtrl.invalid && prenomCtrl.touched) {
+    <small>Le prénom est obligatoire.</small>
+  }
+
+  <label>
+    Nom
+    <input name="nom" [(ngModel)]="nom" required #nomCtrl="ngModel" />
+  </label>
+  @if (nomCtrl.invalid && nomCtrl.touched) {
+    <small>Le nom est obligatoire.</small>
+  }
+
+  @if (erreur()) {
+    <p class="erreur">{{ erreur() }}</p>
+  }
+
+  <button type="submit" [disabled]="f.invalid">Enregistrer</button>
+</form>

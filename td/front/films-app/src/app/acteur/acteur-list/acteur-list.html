@@ -1,4 +1,7 @@
-<h2 class="title">Les acteurs</h2>
+<div class="entete">
+  <h2 class="title">Les acteurs</h2>
+  <a routerLink="/acteurs/nouveau" class="bouton">Ajouter un acteur</a>
+</div>
 
 @if (acteurs$ | async; as acteurs) {
   <div class="grid">

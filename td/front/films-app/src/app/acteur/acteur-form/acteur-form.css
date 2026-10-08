@@ -1,0 +1,62 @@
+.retour {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #6d28d9;
+  text-decoration: none;
+}
+
+.title {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 480px;
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+input, select {
+  font: inherit;
+  font-weight: normal;
+  padding: 0.5rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+small {
+  color: #dc2626;
+}
+
+.erreur {
+  color: #dc2626;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  background: #6d28d9;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #c4b5fd;
+  cursor: not-allowed;
+}

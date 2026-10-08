@@ -7,7 +7,9 @@ import org.polytech.spring.Films.DTO.FilmDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -27,6 +29,27 @@ public class ActeurController {
     @GetMapping("/acteurs/{id}")
     public ActeurDTO findById(@PathVariable Long id) {
         return acteurService.findById(id);
+    }
+
+    @PostMapping("/acteurs")
+    public ResponseEntity<ActeurDTO> create(@RequestBody ActeurCreationDTO acteur) {
+        ActeurDTO saved = acteurService.create(acteur);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{id}")
+                .buildAndExpand(saved.id())
+                .toUri();
+        return ResponseEntity.created(location).body(saved);
+    }
+
+    @PutMapping("/acteurs/{id}")
+    public ActeurDTO update(@PathVariable Long id, @RequestBody ActeurCreationDTO acteur) {
+        return acteurService.update(id, acteur);
+    }
+
+    @DeleteMapping("/acteurs/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        acteurService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/acteurs/{id}/films")

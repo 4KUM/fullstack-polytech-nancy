@@ -2,9 +2,10 @@ import { Component, computed, inject, input, signal } from "@angular/core";
 import { AsyncPipe, DatePipe } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
 import { toObservable } from "@angular/core/rxjs-interop";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { catchError, of, switchMap } from "rxjs";
 import { ActeurService } from "../service/acteur-service";
+import { Acteur } from "../acteur.model";
 
 @Component({
   selector: "app-acteur-detail",
@@ -14,6 +15,7 @@ import { ActeurService } from "../service/acteur-service";
 })
 export class ActeurDetail {
   private service = inject(ActeurService);
+  private router = inject(Router);
 
   id = input.required<string>();
   acteurId = computed(() => Number(this.id()));
@@ -31,4 +33,14 @@ export class ActeurDetail {
   films$ = toObservable(this.acteurId).pipe(
     switchMap(id => this.service.getFilms(id))
   );
+
+  supprimer(acteur: Acteur) {
+    if (!confirm(`Supprimer l'acteur « ${acteur.prenom} ${acteur.nom} » ?`)) {
+      return;
+    }
+    this.service.supprimer(acteur.id).subscribe({
+      next: () => this.router.navigate(["/acteurs"]),
+      error: () => this.erreur.set("Impossible de supprimer cet acteur")
+    });
+  }
 }

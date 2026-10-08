@@ -45,4 +45,16 @@ public class ActeurController {
         ActeurDTO saved = acteurService.create(filmId, acteur);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
+
+    @PostMapping("/films/{filmId}/acteurs/{acteurId}")
+    public ResponseEntity<Void> associer(@PathVariable Long filmId, @PathVariable Long acteurId) {
+        acteurService.associer(filmId, acteurId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/films/{filmId}/acteurs/{acteurId}")
+    public ResponseEntity<Void> dissocier(@PathVariable Long filmId, @PathVariable Long acteurId) {
+        acteurService.dissocier(filmId, acteurId);
+        return ResponseEntity.noContent().build();
+    }
 }

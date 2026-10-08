@@ -68,6 +68,20 @@ public class ActeurService {
         return acteurMapper.toDto(acteur);
     }
 
+    public void associer(Long filmId, Long acteurId) {
+        Film film = getFilm(filmId);
+        Acteur acteur = getActeur(acteurId);
+        film.getActeurs().add(acteur);
+        acteur.getFilms().add(film);
+    }
+
+    public void dissocier(Long filmId, Long acteurId) {
+        Film film = getFilm(filmId);
+        Acteur acteur = getActeur(acteurId);
+        film.getActeurs().remove(acteur);
+        acteur.getFilms().remove(film);
+    }
+
     private Acteur getActeur(Long id) {
         return acteurRepo.findById(id)
                 .orElseThrow(() -> new ActeurNotFoundException(id));

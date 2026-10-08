@@ -17,7 +17,10 @@ export class FilmList {
   erreur = signal("");
 
   constructor() {
-    this.service.getAll().subscribe(films => this.films.set(films));
+    this.service.getAll().subscribe({
+      next: films => this.films.set(films),
+      error: () => this.erreur.set("Impossible de charger les films : l'API ne répond pas.")
+    });
   }
 
   onSupprimer(film: Film) {

@@ -7,9 +7,11 @@
         <h3>{{ a.prenom }} {{ a.nom }}</h3>
       </a>
     } @empty {
-      <p class="vide">Aucun acteur pour le moment.</p>
+      <p class="vide">Aucun acteur enregistré.</p>
     }
   </div>
+} @else if (erreur()) {
+  <p class="erreur">{{ erreur() }}</p>
 } @else {
   <p class="vide">Chargement...</p>
 }

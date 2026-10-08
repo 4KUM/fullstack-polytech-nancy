@@ -1,6 +1,6 @@
 import { Injectable, inject } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable, catchError, of } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 import { Film } from "../film.model";
 
 @Injectable({ providedIn: "root" })
@@ -9,12 +9,7 @@ export class FilmService {
   private url = "/api/films";
 
   getAll(): Observable<Film[]> {
-    return this.http.get<Film[]>(this.url).pipe(
-      catchError((e: HttpErrorResponse) => {
-        console.error(e.status, e.error?.detail);
-        return of([]);
-      })
-    );
+    return this.http.get<Film[]>(this.url);
   }
 
   getById(id: number): Observable<Film> {
@@ -31,5 +26,13 @@ export class FilmService {
 
   supprimer(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/${id}`);
+  }
+
+  associerActeur(id: number, acteurId: number): Observable<void> {
+    return this.http.post<void>(`${this.url}/${id}/acteurs/${acteurId}`, null);
+  }
+
+  dissocierActeur(id: number, acteurId: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}/acteurs/${acteurId}`);
   }
 }

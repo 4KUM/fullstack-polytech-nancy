@@ -10,12 +10,7 @@ export class ActeurService {
   private url = "/api/acteurs";
 
   getAll(): Observable<Acteur[]> {
-    return this.http.get<Acteur[]>(this.url).pipe(
-      catchError((e: HttpErrorResponse) => {
-        console.error(e.status, e.error?.detail);
-        return of([]);
-      })
-    );
+    return this.http.get<Acteur[]>(this.url);
   }
 
   getById(id: number): Observable<Acteur> {

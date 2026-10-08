@@ -1,6 +1,7 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { AsyncPipe } from "@angular/common";
 import { RouterLink } from "@angular/router";
+import { catchError, of } from "rxjs";
 import { ActeurService } from "../service/acteur-service";
 
 @Component({
@@ -10,5 +11,12 @@ import { ActeurService } from "../service/acteur-service";
   styleUrl: "./acteur-list.css"
 })
 export class ActeurList {
-  acteurs$ = inject(ActeurService).getAll();
+  erreur = signal("");
+
+  acteurs$ = inject(ActeurService).getAll().pipe(
+    catchError(() => {
+      this.erreur.set("Impossible de charger les acteurs : l'API ne répond pas.");
+      return of(null);
+    })
+  );
 }

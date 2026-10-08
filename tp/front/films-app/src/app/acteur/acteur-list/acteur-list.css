@@ -36,3 +36,10 @@
   color: #94a3b8;
   padding: 2rem;
 }
+
+.erreur {
+  color: #dc2626;
+  background: #fef2f2;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}

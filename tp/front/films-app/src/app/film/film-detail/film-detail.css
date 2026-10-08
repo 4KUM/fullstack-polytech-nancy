@@ -1,0 +1,48 @@
+.retour {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #6d28d9;
+  text-decoration: none;
+}
+
+.detail {
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.detail h2 {
+  margin: 0.6rem 0 1rem;
+}
+
+.detail p {
+  margin: 0.3rem 0;
+  color: #64748b;
+}
+
+.detail h3 {
+  margin-top: 1.5rem;
+}
+
+.badge {
+  display: inline-block;
+  background: #ede9fe;
+  color: #6d28d9;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+.erreur {
+  text-align: center;
+  color: #dc2626;
+  padding: 2rem;
+}
+
+.vide {
+  text-align: center;
+  color: #94a3b8;
+  padding: 2rem;
+}

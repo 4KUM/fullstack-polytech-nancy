@@ -1,0 +1,23 @@
+<a routerLink="/films" class="retour">Retour à la liste</a>
+
+@if (film$ | async; as film) {
+  <article class="detail">
+    <span class="badge">{{ film.genre }}</span>
+    <h2>{{ film.titre }}</h2>
+    <p>Réalisateur : {{ film.realisateur }}</p>
+    <p>Sortie : {{ film.dateSortie | date:"dd/MM/yyyy" }}</p>
+
+    <h3>Acteurs</h3>
+    <ul>
+      @for (a of film.acteurs; track a.id) {
+        <li>{{ a.prenom }} {{ a.nom }}</li>
+      } @empty {
+        <li>Aucun acteur associé à ce film.</li>
+      }
+    </ul>
+  </article>
+} @else if (erreur()) {
+  <p class="erreur">{{ erreur() }}</p>
+} @else {
+  <p class="vide">Chargement...</p>
+}

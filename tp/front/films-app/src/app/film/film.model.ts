@@ -1,8 +1,5 @@
-export interface Acteur {
-  id: number;
-  nom: string;
-  prenom: string;
-}
+import { Acteur } from '../acteur/acteur.model';
+import { Commentaire } from '../commentaire/commentaire.model';
 
 export interface Film {
   id: number;
@@ -11,4 +8,5 @@ export interface Film {
   dateSortie: string;
   genre: string;
   acteurs: Acteur[];
+  commentaires: Commentaire[];
 }

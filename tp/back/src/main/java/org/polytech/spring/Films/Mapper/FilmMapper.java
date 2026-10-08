@@ -1,6 +1,7 @@
 package org.polytech.spring.Films.Mapper;
 
 import org.polytech.spring.Acteur.Mapper.ActeurMapper;
+import org.polytech.spring.Commentaires.Mapper.CommentaireMapper;
 import org.polytech.spring.Films.DTO.FilmCreationDTO;
 import org.polytech.spring.Films.DTO.FilmDTO;
 import org.polytech.spring.Films.Entity.Film;
@@ -10,9 +11,11 @@ import org.springframework.stereotype.Component;
 public class FilmMapper {
 
     private final ActeurMapper acteurMapper;
+    private final CommentaireMapper commentaireMapper;
 
-    public FilmMapper(ActeurMapper acteurMapper) {
+    public FilmMapper(ActeurMapper acteurMapper, CommentaireMapper commentaireMapper) {
         this.acteurMapper = acteurMapper;
+        this.commentaireMapper = commentaireMapper;
     }
 
     public FilmDTO toDto(Film film) {
@@ -24,6 +27,9 @@ public class FilmMapper {
                 film.getGenre(),
                 film.getActeurs().stream()
                         .map(acteurMapper::toDto)
+                        .toList(),
+                film.getCommentaires().stream()
+                        .map(commentaireMapper::toDto)
                         .toList()
         );
     }

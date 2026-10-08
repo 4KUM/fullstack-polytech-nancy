@@ -1,6 +1,7 @@
 package org.polytech.spring.Films.DTO;
 
 import org.polytech.spring.Acteur.DTO.ActeurDTO;
+import org.polytech.spring.Commentaires.DTO.CommentaireDTO;
 import org.polytech.spring.Films.Entity.Genre;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ public record FilmDTO(
         String realisateur,
         LocalDate dateSortie,
         Genre genre,
-        List<ActeurDTO> acteurs
+        List<ActeurDTO> acteurs,
+        List<CommentaireDTO> commentaires
 ) {
 }

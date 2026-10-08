@@ -1,0 +1,15 @@
+<h2 class="title">Les acteurs</h2>
+
+@if (acteurs$ | async; as acteurs) {
+  <div class="grid">
+    @for (a of acteurs; track a.id) {
+      <article class="card">
+        <h3>{{ a.prenom }} {{ a.nom }}</h3>
+      </article>
+    } @empty {
+      <p class="vide">Aucun acteur pour le moment.</p>
+    }
+  </div>
+} @else {
+  <p class="vide">Chargement...</p>
+}

@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FilmList } from './film-list/film-list';
+import { FilmList } from './film/film-list/film-list';
 
 @Component({
   imports: [RouterOutlet, FilmList],

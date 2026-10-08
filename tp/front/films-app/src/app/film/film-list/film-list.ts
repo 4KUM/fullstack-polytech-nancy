@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import {AsyncPipe, DatePipe} from "@angular/common";
-import { FilmService } from "../film/service/film-service";
+import { FilmService } from "../service/film-service";
 
 @Component({
   selector: "app-film-list",

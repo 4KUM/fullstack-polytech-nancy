@@ -33,3 +33,23 @@
   color: #94a3b8;
   font-size: 0.85rem;
 }
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  opacity: 0.8;
+}
+
+.menu a.actif {
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 1;
+}

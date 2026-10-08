@@ -1,5 +1,5 @@
-import { Acteur } from '../acteur/acteur.model';
-import { Commentaire } from '../commentaire/commentaire.model';
+import { Acteur } from "../acteur/acteur.model";
+import { Commentaire } from "../commentaire/commentaire.model";
 
 export interface Film {
   id: number;

@@ -1,10 +1,13 @@
 <header class="topbar">
-  <div class="logo">🎬 <span>Ciné</span>thèque</div>
+  <div class="logo"><span>Ciné</span>thèque</div>
   <p class="subtitle">Votre bibliothèque de films</p>
+  <nav class="menu">
+    <a routerLink="/films" routerLinkActive="actif">Films</a>
+    <a routerLink="/acteurs" routerLinkActive="actif">Acteurs</a>
+  </nav>
 </header>
 
 <main class="container">
-  <app-film-list />
   <router-outlet />
 </main>
 

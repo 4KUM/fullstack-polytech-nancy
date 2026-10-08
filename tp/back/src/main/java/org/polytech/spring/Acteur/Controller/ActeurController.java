@@ -3,6 +3,7 @@ package org.polytech.spring.Acteur.Controller;
 import org.polytech.spring.Acteur.DTO.ActeurCreationDTO;
 import org.polytech.spring.Acteur.DTO.ActeurDTO;
 import org.polytech.spring.Acteur.Service.ActeurService;
+import org.polytech.spring.Films.DTO.FilmDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,16 @@ public class ActeurController {
     @GetMapping("/acteurs")
     public List<ActeurDTO> findAll() {
         return acteurService.findAll();
+    }
+
+    @GetMapping("/acteurs/{id}")
+    public ActeurDTO findById(@PathVariable Long id) {
+        return acteurService.findById(id);
+    }
+
+    @GetMapping("/acteurs/{id}/films")
+    public List<FilmDTO> findFilms(@PathVariable Long id) {
+        return acteurService.findFilms(id);
     }
 
     @GetMapping("/films/{filmId}/acteurs")

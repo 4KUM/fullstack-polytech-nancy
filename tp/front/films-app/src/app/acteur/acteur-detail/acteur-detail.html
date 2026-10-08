@@ -1,0 +1,25 @@
+<a routerLink="/acteurs" class="retour">Retour à la liste</a>
+
+@if (acteur$ | async; as acteur) {
+  <article class="detail">
+    <h2>{{ acteur.prenom }} {{ acteur.nom }}</h2>
+
+    <h3>Filmographie</h3>
+    @if (films$ | async; as films) {
+      <ul>
+        @for (f of films; track f.id) {
+          <li>
+            <a [routerLink]="['/films', f.id]">{{ f.titre }}</a>
+            <span class="date">{{ f.dateSortie | date:"dd/MM/yyyy" }}</span>
+          </li>
+        } @empty {
+          <li class="vide">Cet acteur n'a participé à aucun film.</li>
+        }
+      </ul>
+    }
+  </article>
+} @else if (erreur()) {
+  <p class="erreur">{{ erreur() }}</p>
+} @else {
+  <p class="vide">Chargement...</p>
+}

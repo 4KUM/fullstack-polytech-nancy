@@ -3,9 +3,9 @@
 @if (acteurs$ | async; as acteurs) {
   <div class="grid">
     @for (a of acteurs; track a.id) {
-      <article class="card">
+      <a class="card" [routerLink]="['/acteurs', a.id]">
         <h3>{{ a.prenom }} {{ a.nom }}</h3>
-      </article>
+      </a>
     } @empty {
       <p class="vide">Aucun acteur pour le moment.</p>
     }

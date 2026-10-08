@@ -1,0 +1,45 @@
+<a [routerLink]="enEdition() ? ['/films', filmId()] : ['/films']" class="retour">Annuler</a>
+
+<h2 class="title">{{ enEdition() ? "Modifier le film" : "Nouveau film" }}</h2>
+
+<form #f="ngForm" (ngSubmit)="enregistrer()" class="formulaire">
+  <label>
+    Titre
+    <input name="titre" [(ngModel)]="titre" required maxlength="200" #titreCtrl="ngModel" />
+  </label>
+  @if (titreCtrl.invalid && titreCtrl.touched) {
+    <small>Le titre est obligatoire.</small>
+  }
+
+  <label>
+    Réalisateur
+    <input name="realisateur" [(ngModel)]="realisateur" maxlength="100" />
+  </label>
+
+  <label>
+    Date de sortie
+    <input name="dateSortie" type="date" [(ngModel)]="dateSortie" required #dateCtrl="ngModel" />
+  </label>
+  @if (dateCtrl.invalid && dateCtrl.touched) {
+    <small>La date de sortie est obligatoire.</small>
+  }
+
+  <label>
+    Genre
+    <select name="genre" [(ngModel)]="genre" required #genreCtrl="ngModel">
+      <option value="" disabled>Choisir un genre</option>
+      @for (g of genres; track g.valeur) {
+        <option [ngValue]="g.valeur">{{ g.libelle }}</option>
+      }
+    </select>
+  </label>
+  @if (genreCtrl.invalid && genreCtrl.touched) {
+    <small>Le genre est obligatoire.</small>
+  }
+
+  @if (erreur()) {
+    <p class="erreur">{{ erreur() }}</p>
+  }
+
+  <button type="submit" [disabled]="f.invalid">Enregistrer</button>
+</form>

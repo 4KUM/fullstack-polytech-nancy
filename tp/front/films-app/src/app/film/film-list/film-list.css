@@ -52,3 +52,22 @@
   color: #94a3b8;
   padding: 2rem;
 }
+
+.entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.entete .title {
+  margin: 0;
+}
+
+.bouton {
+  background: #6d28d9;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}

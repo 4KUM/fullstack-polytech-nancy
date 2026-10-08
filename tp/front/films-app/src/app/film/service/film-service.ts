@@ -20,4 +20,12 @@ export class FilmService {
   getById(id: number): Observable<Film> {
     return this.http.get<Film>(`${this.url}/${id}`);
   }
+
+  creer(f: Partial<Film>): Observable<Film> {
+    return this.http.post<Film>(this.url, f);
+  }
+
+  modifier(id: number, f: Partial<Film>): Observable<Film> {
+    return this.http.put<Film>(`${this.url}/${id}`, f);
+  }
 }

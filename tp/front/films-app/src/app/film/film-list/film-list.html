@@ -1,4 +1,7 @@
-<h2 class="title">Les films</h2>
+<div class="entete">
+  <h2 class="title">Les films</h2>
+  <a routerLink="/films/nouveau" class="bouton">Ajouter un film</a>
+</div>
 
 @if (films$ | async; as films) {
   <div class="grid">

@@ -46,3 +46,13 @@
   color: #94a3b8;
   padding: 2rem;
 }
+
+.bouton {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #6d28d9;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}

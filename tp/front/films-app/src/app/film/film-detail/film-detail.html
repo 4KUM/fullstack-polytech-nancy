@@ -6,6 +6,7 @@
     <h2>{{ film.titre }}</h2>
     <p>Réalisateur : {{ film.realisateur }}</p>
     <p>Sortie : {{ film.dateSortie | date:"dd/MM/yyyy" }}</p>
+    <a [routerLink]="['/films', film.id, 'modifier']" class="bouton">Modifier</a>
 
     <h3>Acteurs</h3>
     <ul>

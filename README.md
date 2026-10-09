@@ -1,5 +1,17 @@
 # Développement Fullstack — Polytech
 
+> [!CAUTION]
+> ## TD 1 et TD 2 : le code est dans le dossier `tp/`, pas dans `td/`
+>
+> **Je me suis trompé de dossier au début** : j'ai fait le TD 1 et le TD 2 dans `tp/back`
+> au lieu de `td/back`. Le TD 3 est bien dans `td/` (`td/back` et `td/front/films-app`).
+>
+> - Pour le **TD 1** : `git checkout TD1`, puis ouvrir **`tp/back`**
+> - Pour le **TD 2** : `git checkout TD2`, puis ouvrir **`tp/back`**
+> - Pour le **TD 3** : `git checkout td3`, puis ouvrir **`td/back`** et **`td/front/films-app`**
+>
+> Le code du back a ensuite été déplacé de `tp/` vers `td/` pendant le TD 3, avec son historique.
+
 Bibliothèque de films : une API REST Spring Boot et un front Angular qui la consomme.
 
 ## Structure
@@ -81,8 +93,59 @@ puis le front : http://localhost:4200/api/films doit renvoyer du JSON.
 - Liste des films, détail d'un film avec ses acteurs
 - Création, modification et suppression d'un film
 - Liste des acteurs, détail d'un acteur avec ses films
+- Création, modification et suppression d'un acteur
+- Association d'un acteur existant à un film via un sélecteur, et dissociation
+- Ajout et suppression de commentaires sur un film, depuis sa page de détail
 - Mise en évidence des films sortis avant 2000, du genre science-fiction et des films de Christopher Nolan
-- Message d'erreur affiché si l'API ne répond pas
+- Message d'erreur affiché si l'API ne répond pas, message dédié pour une liste vide
+- Page « introuvable » pour toute adresse inconnue
+
+## Pages du front
+
+| URL                     | Composant      | Rôle                                         |
+|-------------------------|----------------|----------------------------------------------|
+| `/films`                | `FilmList`     | liste des films                              |
+| `/films/nouveau`        | `FilmForm`     | création d'un film                           |
+| `/films/:id`            | `FilmDetail`   | détail d'un film, ses acteurs et commentaires |
+| `/films/:id/modifier`   | `FilmForm`     | modification d'un film                       |
+| `/acteurs`              | `ActeurList`   | liste des acteurs                            |
+| `/acteurs/nouveau`      | `ActeurForm`   | création d'un acteur                         |
+| `/acteurs/:id`          | `ActeurDetail` | détail d'un acteur et de ses films           |
+| `/acteurs/:id/modifier` | `ActeurForm`   | modification d'un acteur                     |
+| `/`                     |                | redirige vers `/films`                       |
+| toute autre adresse     | `NotFound`     | page introuvable                             |
+
+## Organisation du front
+
+    src/app/
+      film/
+        film.model.ts          interface Film, calquée sur FilmDTO
+        service/film-service   appels HTTP vers /api/films
+        film-list/             liste des films
+        film-card/             carte d'un film (input film, output supprimer)
+        film-detail/           détail, suppression, association des acteurs
+        film-form/             formulaire de création et d'édition
+      acteur/
+        acteur.model.ts        interface Acteur, calquée sur ActeurDTO
+        service/acteur-service appels HTTP vers /api/acteurs
+        acteur-list/  acteur-detail/  acteur-form/
+      commentaire/
+        commentaire.model.ts   interface Commentaire, calquée sur CommentaireDTO
+        service/commentaire-service  appels HTTP pour ajouter et supprimer
+        commentaire-list/      commentaires d'un film (input commentaires, output modifie)
+      not-found/               page introuvable
+      app.routes.ts            table de routage
+      app.config.ts            router, HttpClient, locale française
+
+Les appels HTTP passent uniquement par les services. Les lectures affichées sont
+consommées avec `toSignal` ou le pipe `async`, les écritures avec `subscribe`.
+
+## Tests
+
+```bash
+cd td/front/films-app
+ng test
+```
 
 ## Routes de l'API
 
@@ -99,6 +162,9 @@ puis le front : http://localhost:4200/api/films doit renvoyer du JSON.
 | DELETE  | `/films/{id}/acteurs/{acteurId}`      | dissocier un acteur d'un film      |
 | GET     | `/acteurs`                            | liste des acteurs                  |
 | GET     | `/acteurs/{id}`                       | détail d'un acteur                 |
+| POST    | `/acteurs`                            | création d'un acteur               |
+| PUT     | `/acteurs/{id}`                       | modification d'un acteur           |
+| DELETE  | `/acteurs/{id}`                       | suppression d'un acteur            |
 | GET     | `/acteurs/{id}/films`                 | films d'un acteur                  |
 | GET     | `/films/{id}/commentaires`            | commentaires d'un film             |
 | POST    | `/films/{id}/commentaires`            | ajouter un commentaire             |

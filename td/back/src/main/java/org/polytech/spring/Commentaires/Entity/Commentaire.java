@@ -24,7 +24,7 @@ public class Commentaire {
     @Column(length = 100)
     private LocalDate date;
 
-    @Column(length = 30, nullable=false)
+    @Column(length = 1000, nullable=false)
     private String message;
 
     public Commentaire(){}

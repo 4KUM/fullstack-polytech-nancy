@@ -1,0 +1,27 @@
+<h3>Commentaires</h3>
+<ul class="commentaires">
+  @for (c of commentaires(); track c.id) {
+    <li>
+      <div>
+        <strong>{{ c.auteur }}</strong>
+        <span class="date">{{ c.date | date:"dd/MM/yyyy" }}</span>
+        <p>{{ c.message }}</p>
+      </div>
+      <button type="button" class="retirer" (click)="supprimer(c)">Supprimer</button>
+    </li>
+  } @empty {
+    <li class="vide">Aucun commentaire pour ce film.</li>
+  }
+</ul>
+
+<form #f="ngForm" (ngSubmit)="ajouter()" class="ajouter">
+  <input name="auteur" [(ngModel)]="auteur" placeholder="Votre nom" required maxlength="100" />
+  <textarea name="message" [(ngModel)]="message" placeholder="Votre commentaire"
+            required maxlength="1000" rows="3"></textarea>
+  <small class="compteur">{{ message().length }} / 1000</small>
+  <button type="submit" class="bouton" [disabled]="f.invalid">Commenter</button>
+</form>
+
+@if (erreur()) {
+  <p class="erreur-action">{{ erreur() }}</p>
+}

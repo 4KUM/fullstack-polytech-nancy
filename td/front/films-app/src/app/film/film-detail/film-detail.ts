@@ -9,10 +9,11 @@ import { FilmService } from "../service/film-service";
 import { ActeurService } from "../../acteur/service/acteur-service";
 import { Film } from "../film.model";
 import { Acteur } from "../../acteur/acteur.model";
+import { CommentaireList } from "../../commentaire/commentaire-list/commentaire-list";
 
 @Component({
   selector: "app-film-detail",
-  imports: [DatePipe, FormsModule, RouterLink],
+  imports: [DatePipe, FormsModule, RouterLink, CommentaireList],
   templateUrl: "./film-detail.html",
   styleUrl: "./film-detail.css"
 })

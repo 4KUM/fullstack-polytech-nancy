@@ -38,6 +38,8 @@
     @if (message()) {
       <p class="erreur-action">{{ message() }}</p>
     }
+
+    <app-commentaire-list [filmId]="film.id" [commentaires]="film.commentaires" (modifie)="recharger()" />
   </article>
 } @else if (erreur()) {
   <p class="erreur">{{ erreur() }}</p>

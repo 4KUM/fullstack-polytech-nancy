@@ -20,11 +20,48 @@
   content: "";
   position: absolute;
   inset: 0 0 auto;
+  z-index: 2;
   height: 3px;
   background: var(--rouge);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--lent) var(--ease-out);
+}
+
+.cadre-affiche {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2 / 3;
+  background: #0d0d0d;
+}
+
+.cadre-affiche::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 35%;
+  background: linear-gradient(to top, rgba(20, 20, 20, 0.95), transparent);
+  pointer-events: none;
+}
+
+.affiche {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--lent) var(--ease-out), filter var(--lent) var(--ease-out);
+}
+
+.affiche-vide {
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  text-align: center;
+  font-family: var(--display);
+  font-size: 2rem;
+  line-height: 1.05;
+  color: #5a5a5a;
+  background: linear-gradient(160deg, #2b0a0d, #111 70%);
 }
 
 .corps {
@@ -123,6 +160,11 @@
 
   .card:hover::before {
     transform: scaleX(1);
+  }
+
+  .card:hover .affiche {
+    transform: scale(1.06);
+    filter: brightness(1.08);
   }
 
   .card:hover h3 a {

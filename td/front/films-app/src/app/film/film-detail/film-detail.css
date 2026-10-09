@@ -8,6 +8,44 @@
   animation: entree-carte 520ms var(--ease-out) 100ms backwards;
 }
 
+.entete-film {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.affiche {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  animation: entree-carte 600ms var(--ease-out) 180ms backwards;
+}
+
+.affiche-vide {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  text-align: center;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  line-height: 1.05;
+  color: var(--gris);
+  background: linear-gradient(160deg, #2b0a0d, #111);
+}
+
+@media (max-width: 600px) {
+  .entete-film {
+    grid-template-columns: 1fr;
+  }
+
+  .affiche {
+    max-width: 200px;
+  }
+}
+
 .detail h2 {
   margin: 0.8rem 0 1rem;
   font-family: var(--display);
@@ -105,7 +143,8 @@
   margin-top: 1rem;
 }
 
-.associer select {
+.associer select,
+.associer input {
   flex: 1;
   min-width: 12rem;
 }

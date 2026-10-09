@@ -4,7 +4,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Router, RouterLink } from "@angular/router";
-import { catchError, of } from "rxjs";
+import { Observable, catchError, forkJoin, of, switchMap } from "rxjs";
 import { FilmService } from "../service/film-service";
 import { ActeurService } from "../../acteur/service/acteur-service";
 import { Film, libelleGenre } from "../film.model";
@@ -40,9 +40,12 @@ export class FilmDetail implements OnInit {
     { initialValue: [] }
   );
   acteurSelectionne = signal<number | null>(null);
+  personnage = signal("");
+  afficheCassee = signal(false);
   acteursDisponibles = computed(() =>
     this.acteurs().filter(a => !this.film()?.acteurs.some(fa => fa.id === a.id))
   );
+
 
   ngOnInit() {
     this.recharger();
@@ -62,11 +65,13 @@ export class FilmDetail implements OnInit {
 
   associer() {
     const id = this.acteurSelectionne();
-    if (!id) return;
+    const personnage = this.personnage().trim();
+    if (!id || !personnage) return;
 
-    this.service.associerActeur(this.filmId(), id).subscribe({
+    this.roleService.creer(this.filmId(), { personnage, acteurId: id }).subscribe({
       next: () => {
         this.acteurSelectionne.set(null);
+        this.personnage.set("");
         this.message.set("");
         this.recharger();
       },
@@ -75,7 +80,14 @@ export class FilmDetail implements OnInit {
   }
 
   dissocier(acteur: Acteur) {
-    this.service.dissocierActeur(this.filmId(), acteur.id).subscribe({
+    const suppressions = this.roles()
+      .filter(r => r.acteur.id === acteur.id)
+      .map(r => this.roleService.supprimer(r.id));
+
+    const avant: Observable<unknown> = suppressions.length ? forkJoin(suppressions) : of(null);
+    avant.pipe(
+      switchMap(() => this.service.dissocierActeur(this.filmId(), acteur.id))
+    ).subscribe({
       next: () => {
         this.message.set("");
         this.recharger();

@@ -1,17 +1,19 @@
-import { Component, computed, input, output } from "@angular/core";
+import { Component, computed, input, output, signal } from "@angular/core";
 import { DatePipe, NgClass, NgStyle } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { Film, libelleGenre } from "../film.model";
+import {ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: "app-film-card",
-  imports: [DatePipe, NgClass, NgStyle, RouterLink],
+  imports: [DatePipe, NgClass, NgStyle, RouterLink, ReactiveFormsModule],
   templateUrl: "./film-card.html",
   styleUrl: "./film-card.css"
 })
 export class FilmCard {
   film = input.required<Film>();
   supprimer = output<Film>();
+  afficheCassee = signal(false);
 
   genre = computed(() => libelleGenre(this.film().genre));
   estAncien = computed(() => new Date(this.film().dateSortie).getFullYear() < 2000);

@@ -12,7 +12,7 @@
     }
 
     <h3>Filmographie</h3>
-    @if (films$ | async; as films) {
+    @if (films(); as films) {
       <ul>
         @for (f of films; track f.id) {
           <li>
@@ -28,6 +28,23 @@
           <li class="vide">Cet acteur n'a participé à aucun film.</li>
         }
       </ul>
+    }
+
+    <h3>Ajouter un rôle</h3>
+    <div class="ajout-role">
+      <select [ngModel]="filmSelectionne()" (ngModelChange)="choisirFilm($event)">
+        <option [ngValue]="null" disabled>Choisir un film</option>
+        @for (f of tousLesFilms(); track f.id) {
+          <option [ngValue]="f.id">{{ f.titre }}</option>
+        }
+      </select>
+      <input name="personnage" [(ngModel)]="personnage" placeholder="Rôle (nom du personnage)" maxlength="100" />
+      <button type="button" class="bouton" [disabled]="!filmSelectionne() || !personnage().trim()" (click)="enregistrerRole()">
+        {{ roleExistant() ? "Modifier le rôle" : "Ajouter le rôle" }}
+      </button>
+    </div>
+    @if (message()) {
+      <p class="erreur-action">{{ message() }}</p>
     }
   </article>
 } @else if (erreur()) {

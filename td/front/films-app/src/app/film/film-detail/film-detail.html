@@ -2,13 +2,22 @@
 
 @if (film(); as film) {
   <article class="detail">
-    <span class="badge" [class.science-fiction]="film.genre === 'SCIENCE_FICTION'">{{ genre() }}</span>
-    <h2>{{ film.titre }}</h2>
-    <p>Réalisateur : {{ film.realisateur }}</p>
-    <p>Sortie : {{ film.dateSortie | date:"longDate" }}</p>
-    <div class="actions">
-      <a [routerLink]="['/films', film.id, 'modifier']" class="bouton">Modifier</a>
-      <button type="button" class="supprimer" (click)="supprimer(film)">Supprimer</button>
+    <div class="entete-film">
+      @if (film.affiche && !afficheCassee()) {
+        <img class="affiche" [src]="film.affiche" [alt]="'Affiche de ' + film.titre" (error)="afficheCassee.set(true)" />
+      } @else {
+        <div class="affiche affiche-vide">{{ film.titre }}</div>
+      }
+      <div class="infos">
+        <span class="badge" [class.science-fiction]="film.genre === 'SCIENCE_FICTION'">{{ genre() }}</span>
+        <h2>{{ film.titre }}</h2>
+        <p>Réalisateur : {{ film.realisateur }}</p>
+        <p>Sortie : {{ film.dateSortie | date:"longDate" }}</p>
+        <div class="actions">
+          <a [routerLink]="['/films', film.id, 'modifier']" class="bouton">Modifier</a>
+          <button type="button" class="supprimer" (click)="supprimer(film)">Supprimer</button>
+        </div>
+      </div>
     </div>
 
     <h3>Acteurs</h3>
@@ -35,7 +44,8 @@
           <option [ngValue]="a.id">{{ a.prenom }} {{ a.nom }}</option>
         }
       </select>
-      <button type="button" class="bouton" [disabled]="!acteurSelectionne()" (click)="associer()">
+      <input name="personnage" [(ngModel)]="personnage" placeholder="Rôle (nom du personnage)" maxlength="100" />
+      <button type="button" class="bouton" [disabled]="!acteurSelectionne() || !personnage().trim()" (click)="associer()">
         Associer
       </button>
     </div>

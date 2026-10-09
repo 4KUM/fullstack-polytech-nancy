@@ -31,6 +31,8 @@ export class FilmList {
     this.filmsCharges()?.filter(f => !this.idsSupprimes().includes(f.id))
   );
 
+
+
   onSupprimer(film: Film) {
     this.service.supprimer(film.id).subscribe({
       next: () => this.idsSupprimes.update(ids => [...ids, film.id]),

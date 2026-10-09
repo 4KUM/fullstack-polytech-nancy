@@ -24,6 +24,7 @@ export class FilmForm implements OnInit {
   realisateur = signal("");
   dateSortie = signal("");
   genre = signal("");
+  affiche = signal("");
   erreur = signal("");
 
   ngOnInit() {
@@ -34,6 +35,7 @@ export class FilmForm implements OnInit {
           this.realisateur.set(f.realisateur);
           this.dateSortie.set(f.dateSortie);
           this.genre.set(f.genre);
+          this.affiche.set(f.affiche ?? "");
         },
         error: () => this.erreur.set("Film introuvable")
       });
@@ -45,7 +47,8 @@ export class FilmForm implements OnInit {
       titre: this.titre(),
       realisateur: this.realisateur(),
       dateSortie: this.dateSortie(),
-      genre: this.genre()
+      genre: this.genre(),
+      affiche: this.affiche() || null
     };
     const requete = this.enEdition()
       ? this.service.modifier(this.filmId(), film)

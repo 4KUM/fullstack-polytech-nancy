@@ -12,6 +12,14 @@
   }
 
   <label>
+    Lien de l'affiche
+    <input name="affiche" type="url" [(ngModel)]="affiche" maxlength="500" placeholder="https://..." />
+  </label>
+  @if (affiche()) {
+    <img [src]="affiche()" alt="Aperçu de l'affiche" class="apercu" />
+  }
+
+  <label>
     Réalisateur
     <input name="realisateur" [(ngModel)]="realisateur" maxlength="100" />
   </label>

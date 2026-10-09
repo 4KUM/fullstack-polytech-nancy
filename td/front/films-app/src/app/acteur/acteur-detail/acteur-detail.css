@@ -95,3 +95,15 @@ li.vide {
   font-style: italic;
   color: var(--gris);
 }
+
+.ajout-role {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ajout-role select,
+.ajout-role input {
+  flex: 1;
+  min-width: 12rem;
+}

@@ -73,3 +73,12 @@ button[type="submit"]:disabled {
     box-shadow: 0 0 22px var(--rouge-lueur);
   }
 }
+
+.apercu {
+  align-self: flex-start;
+  width: 8rem;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: var(--ombre);
+}

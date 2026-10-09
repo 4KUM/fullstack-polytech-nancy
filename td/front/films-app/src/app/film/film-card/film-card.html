@@ -1,4 +1,11 @@
 <article class="card" [ngClass]="{ ancien: estAncien(), recent: !estAncien() }">
+  <div class="cadre-affiche">
+    @if (film().affiche && !afficheCassee()) {
+      <img class="affiche" [src]="film().affiche" [alt]="'Affiche de ' + film().titre" loading="lazy" (error)="afficheCassee.set(true)" />
+    } @else {
+      <div class="affiche affiche-vide">{{ film().titre }}</div>
+    }
+  </div>
   <div class="corps">
     <div class="etiquettes">
       <span class="badge" [ngClass]="{ 'science-fiction': estScienceFiction() }">{{ genre() }}</span>

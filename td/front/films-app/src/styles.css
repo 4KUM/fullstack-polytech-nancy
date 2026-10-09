@@ -6,8 +6,8 @@
   --rouge-lueur: rgba(229, 9, 20, 0.45);
   --nuit: #141414;
   --nuit-profonde: #000000;
-  --surface: #1d1d1d;
-  --surface-haute: #262626;
+  --surface: rgba(24, 24, 24, 0.72);
+  --surface-haute: rgba(38, 38, 38, 0.72);
 
   --velours: var(--rouge);
   --velours-nuit: var(--rouge-sombre);
@@ -127,6 +127,78 @@ body {
   mix-blend-mode: screen;
   transform-origin: 50% 0;
   animation: balayage 14s var(--ease-in-out) infinite;
+}
+
+.card,
+.detail,
+.formulaire {
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  perspective: 1100px;
+  perspective-origin: 50% 35%;
+}
+
+.mot-3d {
+  position: relative;
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(6rem, 21vw, 22rem);
+  line-height: 0.85;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: transparent;
+  background:
+    linear-gradient(105deg, transparent 40%, rgba(255, 235, 235, 0.55) 50%, transparent 60%) -200% 0 / 50% 100% no-repeat,
+    linear-gradient(180deg, #c4121d 0%, #7a0911 45%, #2a0306 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 1px rgba(255, 120, 130, 0.4);
+  opacity: 0.85;
+  transform-style: preserve-3d;
+  transform: rotateX(22deg) rotateY(-14deg) translateZ(-60px);
+  animation:
+    mot-flotte 24s var(--ease-in-out) infinite alternate,
+    mot-reflet 9s var(--ease-in-out) 2s infinite;
+}
+
+.mot-3d::before {
+  content: attr(data-texte);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  color: #1a0203;
+  -webkit-text-stroke: 0;
+  text-shadow:
+    1px 1px 0 #3d0508,
+    2px 2px 0 #36050a,
+    3px 3px 0 #300408,
+    4px 4px 0 #2a0407,
+    5px 5px 0 #240306,
+    6px 6px 0 #1e0305,
+    7px 7px 0 #180204,
+    8px 8px 0 #120203,
+    9px 9px 0 #0c0102,
+    12px 18px 30px rgba(0, 0, 0, 0.8),
+    0 0 80px rgba(229, 9, 20, 0.25);
+  transform: translateZ(-1px);
+}
+
+@keyframes mot-flotte {
+  0% { transform: rotateX(22deg) rotateY(-14deg) translateZ(-60px) translateY(0); }
+  50% { transform: rotateX(16deg) rotateY(0deg) translateZ(-20px) translateY(-2vh); }
+  100% { transform: rotateX(24deg) rotateY(14deg) translateZ(-60px) translateY(1vh); }
+}
+
+@keyframes mot-reflet {
+  0%, 55% { background-position: -200% 0, 0 0; }
+  100% { background-position: 300% 0, 0 0; }
 }
 
 @keyframes derive-1 {

@@ -1,7 +1,7 @@
 import {Component, inject, signal} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
 import {RouterLink} from '@angular/router';
-import {RoleService} from './service/role-service';
+import {RoleService} from '../service/role-service';
 import {catchError, of} from 'rxjs';
 
 @Component({

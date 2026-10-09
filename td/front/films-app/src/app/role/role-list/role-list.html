@@ -1,1 +1,24 @@
-<p>role-list works!</p>
+<div class="entete">
+  <h2 class="title">Les rôles</h2>
+</div>
+
+@if (roles$ | async; as roles) {
+  <div class="grid">
+    @for (r of roles; track r.id) {
+      <div class="card">
+        <h3>{{ r.personnage }}</h3>
+        <p>
+          <a [routerLink]="['/acteurs', r.acteur.id]">{{ r.acteur.prenom }} {{ r.acteur.nom }}</a>
+          dans
+          <a [routerLink]="['/films', r.filmId]">{{ r.filmTitre }}</a>
+        </p>
+      </div>
+    } @empty {
+      <p class="vide">Aucun rôle enregistré.</p>
+    }
+  </div>
+} @else if (erreur()) {
+  <p class="erreur">{{ erreur() }}</p>
+} @else {
+  <p class="vide">Chargement...</p>
+}

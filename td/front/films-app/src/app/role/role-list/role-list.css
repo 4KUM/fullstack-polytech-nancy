@@ -1,0 +1,48 @@
+.entete {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--trait);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+.grid > .vide {
+  grid-column: 1 / -1;
+}
+
+.card {
+  display: block;
+  padding: 1.1rem 1.25rem;
+  color: var(--encre);
+  text-decoration: none;
+  background: var(--papier);
+  border-left: 3px solid transparent;
+  border-radius: 6px;
+  box-shadow: var(--ombre);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  border-left-color: var(--dorure);
+  transform: translateX(3px);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.card p {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+}

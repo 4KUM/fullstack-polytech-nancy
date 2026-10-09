@@ -11,6 +11,7 @@ import org.polytech.spring.Films.Entity.Film;
 import org.polytech.spring.Films.Exception.FilmNotFoundException;
 import org.polytech.spring.Films.Mapper.FilmMapper;
 import org.polytech.spring.Films.Repository.FilmRepository;
+import org.polytech.spring.Role.Repository.RoleRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,13 +27,16 @@ public class ActeurService {
     private final FilmRepository filmRepo;
     private final ActeurMapper acteurMapper;
     private final FilmMapper filmMapper;
+    private final RoleRepository roleRepo;
 
     public ActeurService(ActeurRepository acteurRepo, FilmRepository filmRepo,
-                         ActeurMapper acteurMapper, FilmMapper filmMapper) {
+                         ActeurMapper acteurMapper, FilmMapper filmMapper,
+                         RoleRepository roleRepo) {
         this.acteurRepo = acteurRepo;
         this.filmRepo = filmRepo;
         this.acteurMapper = acteurMapper;
         this.filmMapper = filmMapper;
+        this.roleRepo = roleRepo;
     }
 
     public List<ActeurDTO> findAll() {
@@ -100,6 +104,7 @@ public class ActeurService {
         Acteur acteur = getActeur(acteurId);
         film.getActeurs().remove(acteur);
         acteur.getFilms().remove(film);
+        roleRepo.deleteByFilmIdAndActeurId(filmId, acteurId);
     }
 
     private Acteur getActeur(Long id) {

@@ -1,0 +1,22 @@
+.introuvable {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.introuvable h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.introuvable p {
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.bouton {
+  background: #6d28d9;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}

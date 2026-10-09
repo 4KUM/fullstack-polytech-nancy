@@ -1,21 +1,43 @@
 <a routerLink="/films" class="retour">Retour à la liste</a>
 
-@if (film$ | async; as film) {
+@if (film(); as film) {
   <article class="detail">
     <span class="badge">{{ film.genre }}</span>
     <h2>{{ film.titre }}</h2>
     <p>Réalisateur : {{ film.realisateur }}</p>
     <p>Sortie : {{ film.dateSortie | date:"longDate" }}</p>
-    <a [routerLink]="['/films', film.id, 'modifier']" class="bouton">Modifier</a>
+    <div class="actions">
+      <a [routerLink]="['/films', film.id, 'modifier']" class="bouton">Modifier</a>
+      <button type="button" class="supprimer" (click)="supprimer(film)">Supprimer</button>
+    </div>
 
     <h3>Acteurs</h3>
-    <ul>
+    <ul class="acteurs">
       @for (a of film.acteurs; track a.id) {
-        <li>{{ a.prenom }} {{ a.nom }}</li>
+        <li>
+          <a [routerLink]="['/acteurs', a.id]">{{ a.prenom }} {{ a.nom }}</a>
+          <button type="button" class="retirer" (click)="dissocier(a)">Retirer</button>
+        </li>
       } @empty {
-        <li>Aucun acteur associé à ce film.</li>
+        <li class="vide">Aucun acteur associé à ce film.</li>
       }
     </ul>
+
+    <div class="associer">
+      <select [(ngModel)]="acteurSelectionne">
+        <option [ngValue]="null" disabled>Choisir un acteur</option>
+        @for (a of acteursDisponibles(); track a.id) {
+          <option [ngValue]="a.id">{{ a.prenom }} {{ a.nom }}</option>
+        }
+      </select>
+      <button type="button" class="bouton" [disabled]="!acteurSelectionne()" (click)="associer()">
+        Associer
+      </button>
+    </div>
+
+    @if (message()) {
+      <p class="erreur-action">{{ message() }}</p>
+    }
   </article>
 } @else if (erreur()) {
   <p class="erreur">{{ erreur() }}</p>

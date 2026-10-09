@@ -4,20 +4,27 @@
   border-radius: 6px;
   padding: 2rem;
   box-shadow: var(--ombre);
+  background: linear-gradient(170deg, rgba(229, 9, 20, 0.1), transparent 40%), var(--papier);
+  animation: entree-carte 520ms var(--ease-out) 100ms backwards;
 }
 
 .detail h2 {
   margin: 0 0 1rem;
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(2rem, 5vw, 2.9rem);
-  color: var(--velours);
+  font-size: clamp(2.6rem, 7vw, 4.2rem);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #fff;
+  animation: apparait 600ms var(--ease-out) 220ms backwards;
 }
 
 .detail h3 {
   margin: 2.25rem 0 0.75rem;
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-family: var(--display);
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
 }
 
 .actions {
@@ -38,19 +45,28 @@ li {
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
-  padding: 0.6rem 0;
+  margin: 0 -0.75rem;
+  padding: 0.6rem 0.75rem;
   border-bottom: 1px solid var(--trait);
+  border-radius: 4px;
+  transition: background-color var(--rapide) var(--ease-out);
 }
 
 li a {
   color: var(--encre);
   font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color var(--rapide) var(--ease-out);
 }
 
-li a:hover {
-  color: var(--velours);
+@media (hover: hover) and (pointer: fine) {
+  li:not(.vide):hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  li a:hover {
+    color: var(--rouge);
+  }
 }
 
 li.vide {

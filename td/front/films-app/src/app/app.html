@@ -1,17 +1,23 @@
+<div class="fond" aria-hidden="true">
+  <span class="halo halo-1"></span>
+  <span class="halo halo-2"></span>
+  <span class="halo halo-3"></span>
+  <span class="halo halo-4"></span>
+  <span class="faisceau"></span>
+</div>
+
 <header class="salle">
-  <div class="rideau rideau-gauche" aria-hidden="true"></div>
-  <div class="rideau rideau-droit" aria-hidden="true"></div>
+  <div class="barre">
+    <a routerLink="/films" class="logo" aria-label="Cinéthèque, retour aux films">
+      <span class="logo-texte">Cinéthèque</span>
+    </a>
 
-  <div class="fronton">
-    <a routerLink="/films" class="logo">Cinéthèque</a>
-    <p class="subtitle">Votre bibliothèque de films</p>
+    <nav class="menu">
+      <a routerLink="/films" routerLinkActive="actif">Films</a>
+      <a routerLink="/acteurs" routerLinkActive="actif">Acteurs</a>
+      <a routerLink="/roles" routerLinkActive="actif">Rôles</a>
+    </nav>
   </div>
-
-  <nav class="menu">
-    <a routerLink="/films" routerLinkActive="actif">Films</a>
-    <a routerLink="/acteurs" routerLinkActive="actif">Acteurs</a>
-    <a routerLink="/roles" routerLinkActive="actif">Roles</a>
-  </nav>
 </header>
 
 <main class="container">

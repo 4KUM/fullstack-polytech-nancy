@@ -4,14 +4,19 @@
   border-radius: 6px;
   padding: 2rem;
   box-shadow: var(--ombre);
+  background: linear-gradient(170deg, rgba(229, 9, 20, 0.1), transparent 40%), var(--papier);
+  animation: entree-carte 520ms var(--ease-out) 100ms backwards;
 }
 
 .detail h2 {
   margin: 0.8rem 0 1rem;
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(2rem, 5vw, 2.9rem);
-  color: var(--velours);
+  font-size: clamp(2.6rem, 7vw, 4.2rem);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #fff;
+  animation: apparait 600ms var(--ease-out) 220ms backwards;
 }
 
 .detail p {
@@ -21,8 +26,10 @@
 
 .detail h3 {
   margin: 2.25rem 0 0.75rem;
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-family: var(--display);
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
 }
 
 .badge {
@@ -30,15 +37,15 @@
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  color: var(--velours);
-  border: 1px solid rgba(91, 15, 31, 0.35);
+  border-radius: 3px;
+  color: #fff;
+  background: rgba(229, 9, 20, 0.85);
+  animation: apparait 500ms var(--ease-out) 160ms backwards;
 }
 
 .badge.science-fiction {
   color: var(--sf-encre);
   background: var(--sf);
-  border-color: var(--sf);
 }
 
 .actions {
@@ -60,19 +67,18 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: 0.6rem 0;
+  margin: 0 -0.75rem;
+  padding: 0.6rem 0.75rem;
   border-bottom: 1px solid var(--trait);
+  border-radius: 4px;
+  transition: background-color var(--rapide) var(--ease-out);
 }
 
 .acteurs a {
   color: var(--encre);
   font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s;
-}
-
-.acteurs a:hover {
-  color: var(--velours);
+  transition: color var(--rapide) var(--ease-out);
 }
 
 .acteurs .acteur {
@@ -106,4 +112,14 @@
 
 .erreur {
   margin-top: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .acteurs li:not(.vide):hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .acteurs a:hover {
+    color: var(--rouge);
+  }
 }

@@ -8,11 +8,23 @@
   margin: 0 0 0.75rem;
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(2.2rem, 6vw, 3.2rem);
-  color: var(--velours);
+  font-size: clamp(3rem, 9vw, 5rem);
+  letter-spacing: 0.02em;
+  color: var(--rouge);
+  text-shadow: 0 0 40px var(--rouge-lueur);
+  animation: logo-404 900ms var(--ease-out) 150ms backwards;
+}
+
+@keyframes logo-404 {
+  from {
+    opacity: 0;
+    letter-spacing: 0.3em;
+    filter: blur(6px);
+  }
 }
 
 .introuvable p {
   margin: 0 0 1.75rem;
   color: var(--gris);
+  animation: apparait 500ms var(--ease-out) 450ms backwards;
 }

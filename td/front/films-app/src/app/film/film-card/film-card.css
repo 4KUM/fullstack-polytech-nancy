@@ -3,18 +3,28 @@
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--papier);
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--surface-haute), var(--surface) 60%);
   border-radius: 6px;
   box-shadow: var(--ombre);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform var(--moyen) var(--ease-out),
+    box-shadow var(--moyen) var(--ease-out);
 }
 
-.card:hover {
-  transform: translateY(-4px) rotate(-0.6deg);
-  box-shadow: 0 2px 4px rgba(32, 26, 34, 0.08), 0 16px 32px rgba(91, 15, 31, 0.18);
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--rouge);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--lent) var(--ease-out);
 }
 
 .corps {
@@ -23,21 +33,25 @@
 }
 
 .card h3 {
-  margin: 0.7rem 0 0.4rem;
-  font-size: 1.25rem;
-  font-weight: 600;
+  margin: 0.75rem 0 0.4rem;
+  font-family: var(--display);
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
 }
 
 .card h3 a {
   color: var(--encre);
   text-decoration: none;
-  background: linear-gradient(var(--dorure), var(--dorure)) 0 100% / 0 2px no-repeat;
-  transition: background-size 0.3s ease, color 0.2s;
+  transition: color var(--rapide) var(--ease-out);
 }
 
-.card h3 a:hover {
-  color: var(--velours);
-  background-size: 100% 2px;
+.card h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 .etiquettes {
@@ -48,77 +62,74 @@
 
 .badge,
 .badge-ancien {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.18rem 0.6rem;
+  border-radius: 3px;
 }
 
 .badge {
-  color: var(--velours);
-  border: 1px solid rgba(91, 15, 31, 0.35);
+  color: #fff;
+  background: rgba(229, 9, 20, 0.85);
 }
 
 .badge.science-fiction {
   color: var(--sf-encre);
   background: var(--sf);
-  border-color: var(--sf);
 }
 
 .badge-ancien {
   color: var(--sepia-encre);
-  border: 1px dashed var(--sepia-encre);
+  border: 1px solid rgba(209, 180, 140, 0.45);
 }
 
 .info {
   margin: 0.15rem 0;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--gris);
 }
 
 .talon {
-  position: relative;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.85rem 1.25rem 1rem;
-  border-top: 2px dashed var(--trait);
-}
-
-.talon::before,
-.talon::after {
-  content: "";
-  position: absolute;
-  top: -0.7rem;
-  width: 1.3rem;
-  height: 1.3rem;
-  border-radius: 50%;
-  background: var(--ecran);
-}
-
-.talon::before {
-  left: -0.65rem;
-}
-
-.talon::after {
-  right: -0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .talon .supprimer {
+  position: relative;
+  z-index: 1;
   flex-shrink: 0;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   padding: 0.3rem 0.8rem;
 }
 
 .ancien {
-  background: var(--sepia);
+  background: linear-gradient(160deg, #2a221b, var(--sepia) 60%);
 }
 
 .ancien h3 a {
   color: var(--sepia-encre);
 }
 
-.ancien .talon {
-  border-top-color: rgba(122, 90, 58, 0.35);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: var(--ombre-rouge);
+  }
+
+  .card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .card:hover h3 a {
+    color: #fff;
+  }
+}
+
+.card:focus-within {
+  box-shadow: var(--ombre-rouge);
 }

@@ -7,6 +7,7 @@
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--trait);
+  animation: apparait 500ms var(--ease-out) 200ms backwards;
 }
 
 .grid {
@@ -15,17 +16,32 @@
   gap: 1.5rem;
 }
 
+.grid > app-film-card {
+  animation: entree-carte 520ms var(--ease-out) backwards;
+}
+
+.grid > app-film-card:nth-child(1) { animation-delay: 300ms; }
+.grid > app-film-card:nth-child(2) { animation-delay: 350ms; }
+.grid > app-film-card:nth-child(3) { animation-delay: 400ms; }
+.grid > app-film-card:nth-child(4) { animation-delay: 450ms; }
+.grid > app-film-card:nth-child(5) { animation-delay: 500ms; }
+.grid > app-film-card:nth-child(6) { animation-delay: 550ms; }
+.grid > app-film-card:nth-child(7) { animation-delay: 600ms; }
+.grid > app-film-card:nth-child(8) { animation-delay: 650ms; }
+.grid > app-film-card:nth-child(n + 9) { animation-delay: 700ms; }
+
 .grid > .vide {
   grid-column: 1 / -1;
 }
 
-.sortie {
-  animation: billet-sort 0.45s cubic-bezier(0.55, 0, 0.75, 0.2) forwards;
+.grid > app-film-card.sortie {
+  animation: carte-sort 280ms ease-in forwards;
 }
 
-@keyframes billet-sort {
+@keyframes carte-sort {
   to {
     opacity: 0;
-    transform: translateY(-1.5rem) rotate(6deg) scale(0.9);
+    transform: scale(0.92);
+    filter: blur(4px);
   }
 }

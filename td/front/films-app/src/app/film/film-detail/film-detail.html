@@ -2,7 +2,7 @@
 
 @if (film(); as film) {
   <article class="detail">
-    <span class="badge">{{ film.genre }}</span>
+    <span class="badge" [class.science-fiction]="film.genre === 'SCIENCE_FICTION'">{{ genre() }}</span>
     <h2>{{ film.titre }}</h2>
     <p>Réalisateur : {{ film.realisateur }}</p>
     <p>Sortie : {{ film.dateSortie | date:"longDate" }}</p>

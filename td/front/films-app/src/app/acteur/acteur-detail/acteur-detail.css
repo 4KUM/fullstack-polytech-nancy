@@ -1,89 +1,68 @@
-.retour {
-  display: inline-block;
-  margin-bottom: 1.5rem;
-  color: #6d28d9;
-  text-decoration: none;
-}
-
 .detail {
-  background: white;
-  border-radius: 14px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  background: var(--papier);
+  border-top: 6px solid var(--velours);
+  border-radius: 6px;
+  padding: 2rem;
+  box-shadow: var(--ombre);
 }
 
 .detail h2 {
   margin: 0 0 1rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  color: var(--velours);
 }
 
 .detail h3 {
-  margin-top: 1.5rem;
-}
-
-ul {
-  padding-left: 1.2rem;
-}
-
-li {
-  margin: 0.4rem 0;
-}
-
-li a {
-  color: #6d28d9;
-  text-decoration: none;
+  margin: 2.25rem 0 0.75rem;
+  font-size: 1.15rem;
   font-weight: 600;
-}
-
-.date {
-  margin-left: 0.5rem;
-  color: #64748b;
-  font-size: 0.9rem;
-}
-
-.erreur {
-  text-align: center;
-  color: #dc2626;
-  padding: 2rem;
-}
-
-.vide {
-  color: #94a3b8;
-}
-
-p.vide {
-  text-align: center;
-  padding: 2rem;
 }
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
   align-items: center;
 }
 
-.bouton {
-  background: #6d28d9;
-  color: white;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--trait);
+}
+
+li a {
+  color: var(--encre);
+  font-weight: 500;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  transition: color 0.2s;
 }
 
-.supprimer {
-  font: inherit;
-  background: none;
-  color: #dc2626;
-  border: 1px solid #fca5a5;
-  padding: 0.45rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
+li a:hover {
+  color: var(--velours);
 }
 
-.supprimer:hover {
-  background: #fef2f2;
+li.vide {
+  justify-content: center;
 }
 
-.erreur-action {
-  color: #dc2626;
-  margin-top: 0.75rem;
+.date {
+  font-size: 0.9rem;
+  color: var(--gris);
+  font-variant-numeric: tabular-nums;
+}
+
+.erreur {
+  margin-top: 0;
 }

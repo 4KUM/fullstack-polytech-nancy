@@ -1,22 +1,18 @@
 .introuvable {
+  max-width: 34rem;
+  margin: 3rem auto;
   text-align: center;
-  padding: 3rem 1rem;
 }
 
 .introuvable h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.75rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  color: var(--velours);
 }
 
 .introuvable p {
-  color: #64748b;
-  margin-bottom: 1.5rem;
-}
-
-.bouton {
-  background: #6d28d9;
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  margin: 0 0 1.75rem;
+  color: var(--gris);
 }

@@ -7,7 +7,7 @@ import { Router, RouterLink } from "@angular/router";
 import { catchError, of } from "rxjs";
 import { FilmService } from "../service/film-service";
 import { ActeurService } from "../../acteur/service/acteur-service";
-import { Film } from "../film.model";
+import { Film, libelleGenre } from "../film.model";
 import { Acteur } from "../../acteur/acteur.model";
 import { CommentaireList } from "../../commentaire/commentaire-list/commentaire-list";
 
@@ -25,6 +25,7 @@ export class FilmDetail implements OnInit {
   filmId = computed(() => Number(this.id()));
 
   film = signal<Film | null>(null);
+  genre = computed(() => libelleGenre(this.film()?.genre ?? ""));
   erreur = signal("");
   message = signal("");
 

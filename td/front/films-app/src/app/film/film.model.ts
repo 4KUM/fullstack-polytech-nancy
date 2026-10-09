@@ -39,3 +39,7 @@ export const GENRES = [
   { valeur: "THRILLER", libelle: "Thriller" },
   { valeur: "WESTERN", libelle: "Western" },
 ];
+
+export function libelleGenre(valeur: string): string {
+  return GENRES.find(g => g.valeur === valeur)?.libelle ?? valeur;
+}

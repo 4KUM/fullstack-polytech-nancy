@@ -6,6 +6,7 @@ import { ActeurList } from "./acteur/acteur-list/acteur-list";
 import { ActeurDetail } from "./acteur/acteur-detail/acteur-detail";
 import { ActeurForm } from "./acteur/acteur-form/acteur-form";
 import { NotFound } from "./not-found/not-found";
+import {RoleList} from './role/role-list/role-list';
 
 export const routes: Routes = [
   { path: "films",                component: FilmList },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: "acteurs/nouveau",      component: ActeurForm },
   { path: "acteurs/:id/modifier", component: ActeurForm },
   { path: "acteurs/:id",          component: ActeurDetail },
+  { path: "roles",                component: RoleList },
   { path: "",                     redirectTo: "films", pathMatch: "full" },
   { path: "**",                   component: NotFound },
 ];

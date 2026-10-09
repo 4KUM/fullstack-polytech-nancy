@@ -1,55 +1,226 @@
-.topbar {
-  background: linear-gradient(135deg, #1e1b4b, #4c1d95);
-  color: white;
-  padding: 2rem 1.5rem;
+.salle {
+  --ampoule: #ffe6a3;
+  position: relative;
+  overflow: hidden;
+  padding: 3.25rem 1.5rem 1.25rem;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  color: var(--dorure-pale);
+  background:
+    radial-gradient(ellipse 60% 90% at 50% 0%, rgba(255, 214, 140, 0.22), transparent 70%),
+    var(--velours-nuit);
+  view-transition-name: salle;
+}
+
+.salle::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1.6rem;
+  z-index: 3;
+  background:
+    radial-gradient(circle at 50% 0, var(--velours) 0.95rem, transparent 1rem) 0 0.6rem / 2rem 1rem repeat-x,
+    linear-gradient(var(--velours), var(--velours)) 0 0 / 100% 0.65rem no-repeat;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.35));
+}
+
+.rideau {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 2;
+  background:
+    linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.35)),
+    repeating-linear-gradient(
+      90deg,
+      #3d0814 0,
+      #6e1426 1.1rem,
+      #8a1c31 1.6rem,
+      #6e1426 2.1rem,
+      #3d0814 3.2rem
+    );
+  box-shadow: inset 0 0 2rem rgba(0, 0, 0, 0.5);
+  animation: 1.7s cubic-bezier(0.65, 0, 0.25, 1) 0.35s both;
+}
+
+.rideau-gauche {
+  left: 0;
+  animation-name: ouvre-gauche;
+}
+
+.rideau-droit {
+  right: 0;
+  animation-name: ouvre-droit;
+}
+
+@keyframes ouvre-gauche {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-88%);
+  }
+}
+
+@keyframes ouvre-droit {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(88%);
+  }
+}
+
+.fronton {
+  position: relative;
+  display: inline-block;
+  padding: 1.2rem 2.6rem 1rem;
+  border: 2px solid rgba(217, 164, 65, 0.55);
+  border-radius: 6px;
+  background: rgba(42, 8, 17, 0.6);
+}
+
+.fronton::before,
+.fronton::after {
+  content: "";
+  position: absolute;
+  inset: -0.85rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background: radial-gradient(circle, var(--ampoule) 0.17rem, transparent 0.24rem) 0 0 / 1.2rem 1.2rem;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+.fronton::before {
+  opacity: 0.45;
+}
+
+.fronton::after {
+  background-position: 0.6rem 0.6rem;
+  filter: drop-shadow(0 0 3px var(--ampoule));
+  animation:
+    allume 0.4s ease-out 1.4s both,
+    chenillard 0.5s steps(1) 1.8s 6;
+}
+
+@keyframes allume {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes chenillard {
+  50% {
+    background-position: 0 0;
+  }
 }
 
 .logo {
-  font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+  line-height: 1.05;
+  color: var(--dorure);
+  text-decoration: none;
+  text-shadow:
+    0 0 0.6rem rgba(255, 196, 92, 0.55),
+    0 0 1.8rem rgba(255, 170, 60, 0.35);
+  animation: enseigne 0.9s steps(1) 1.15s both;
 }
 
-.logo span {
-  color: #fbbf24;
+@keyframes enseigne {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.25;
+  }
+  45% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.5;
+  }
+  65% {
+    opacity: 1;
+  }
 }
 
 .subtitle {
-  margin: 0.4rem 0 0;
-  opacity: 0.8;
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.menu {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.75rem;
+}
+
+.menu a {
+  position: relative;
+  padding: 0.3rem 0.1rem;
+  color: var(--dorure-pale);
+  font-weight: 500;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15rem;
+  height: 2px;
+  background: var(--dorure);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.menu a:hover {
+  opacity: 1;
+}
+
+.menu a.actif {
+  opacity: 1;
+}
+
+.menu a.actif::after {
+  transform: scaleX(1);
 }
 
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem 3rem;
 }
 
 .footer {
+  padding: 1.5rem 1rem 2rem;
   text-align: center;
-  padding: 1.5rem;
-  color: #94a3b8;
   font-size: 0.85rem;
+  color: var(--gris);
 }
 
-.menu {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
+@media (max-width: 520px) {
+  .fronton {
+    padding: 1rem 1.4rem 0.9rem;
+  }
 
-.menu a {
-  color: white;
-  text-decoration: none;
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  opacity: 0.8;
-}
-
-.menu a.actif {
-  background: rgba(255, 255, 255, 0.15);
-  opacity: 1;
+  .menu {
+    gap: 1.5rem;
+  }
 }

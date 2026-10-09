@@ -10,7 +10,7 @@
 @if (films(); as films) {
   <div class="grid">
     @for (f of films; track f.id) {
-      <app-film-card [film]="f" (supprimer)="onSupprimer($event)" />
+      <app-film-card [film]="f" (supprimer)="onSupprimer($event)" animate.leave="sortie" />
     } @empty {
       <p class="vide">Aucun film enregistré.</p>
     }

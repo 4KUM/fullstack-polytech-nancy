@@ -1,9 +1,16 @@
-<header class="topbar">
-  <div class="logo"><span>Ciné</span>thèque</div>
-  <p class="subtitle">Votre bibliothèque de films</p>
+<header class="salle">
+  <div class="rideau rideau-gauche" aria-hidden="true"></div>
+  <div class="rideau rideau-droit" aria-hidden="true"></div>
+
+  <div class="fronton">
+    <a routerLink="/films" class="logo">Cinéthèque</a>
+    <p class="subtitle">Votre bibliothèque de films</p>
+  </div>
+
   <nav class="menu">
     <a routerLink="/films" routerLinkActive="actif">Films</a>
     <a routerLink="/acteurs" routerLinkActive="actif">Acteurs</a>
+    <a routerLink="/roles" routerLinkActive="actif">Roles</a>
   </nav>
 </header>
 
@@ -12,5 +19,5 @@
 </main>
 
 <footer class="footer">
-  Polytech Nancy · Angular + Spring Boot
+  Polytech Nancy, TD 3 de développement fullstack avec Angular et Spring Boot
 </footer>

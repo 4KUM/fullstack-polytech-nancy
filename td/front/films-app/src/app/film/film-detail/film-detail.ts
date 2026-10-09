@@ -10,6 +10,8 @@ import { ActeurService } from "../../acteur/service/acteur-service";
 import { Film, libelleGenre } from "../film.model";
 import { Acteur } from "../../acteur/acteur.model";
 import { CommentaireList } from "../../commentaire/commentaire-list/commentaire-list";
+import { RoleService } from "../../role/service/role-service";
+import { Role } from "../../role/role.model";
 
 @Component({
   selector: "app-film-detail",
@@ -20,6 +22,7 @@ import { CommentaireList } from "../../commentaire/commentaire-list/commentaire-
 export class FilmDetail implements OnInit {
   private service = inject(FilmService);
   private router = inject(Router);
+  private roleService = inject(RoleService);
 
   id = input.required<string>();
   filmId = computed(() => Number(this.id()));
@@ -28,6 +31,9 @@ export class FilmDetail implements OnInit {
   genre = computed(() => libelleGenre(this.film()?.genre ?? ""));
   erreur = signal("");
   message = signal("");
+
+  roles = signal<Role[]>([]);
+  personnages = computed(() => new Map(this.roles().map(r => [r.acteur.id, r.personnage])));
 
   acteurs = toSignal(
     inject(ActeurService).getAll().pipe(catchError(() => of([] as Acteur[]))),
@@ -47,6 +53,10 @@ export class FilmDetail implements OnInit {
       next: f => this.film.set(f),
       error: (e: HttpErrorResponse) =>
         this.erreur.set(e.status === 404 ? "Film introuvable" : "Erreur serveur")
+    });
+    this.roleService.getByFilm(this.filmId()).subscribe({
+      next: r => this.roles.set(r),
+      error: () => this.roles.set([])
     });
   }
 

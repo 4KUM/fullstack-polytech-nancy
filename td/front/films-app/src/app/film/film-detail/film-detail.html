@@ -15,7 +15,12 @@
     <ul class="acteurs">
       @for (a of film.acteurs; track a.id) {
         <li>
-          <a [routerLink]="['/acteurs', a.id]">{{ a.prenom }} {{ a.nom }}</a>
+          <span class="acteur">
+            <a [routerLink]="['/acteurs', a.id]">{{ a.prenom }} {{ a.nom }}</a>
+            @if (personnages().get(a.id); as p) {
+              <span class="personnage">dans le rôle de {{ p }}</span>
+            }
+          </span>
           <button type="button" class="retirer" (click)="dissocier(a)">Retirer</button>
         </li>
       } @empty {

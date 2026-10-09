@@ -15,7 +15,7 @@ export class RoleList {
 
   roles$ = inject(RoleService).getAll().pipe(
     catchError(()=>{
-      this.erreur.set("Impossible de charger les roles: l'API ne répond pas. ");
+      this.erreur.set("Impossible de charger les rôles : l'API ne répond pas.");
       return of(null);
     })
   )

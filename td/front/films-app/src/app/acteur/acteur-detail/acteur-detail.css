@@ -66,3 +66,16 @@ li.vide {
 .erreur {
   margin-top: 0;
 }
+
+.film {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.personnage {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--gris);
+}

@@ -16,7 +16,12 @@
       <ul>
         @for (f of films; track f.id) {
           <li>
-            <a [routerLink]="['/films', f.id]">{{ f.titre }}</a>
+            <span class="film">
+              <a [routerLink]="['/films', f.id]">{{ f.titre }}</a>
+              @if (personnages().get(f.id); as p) {
+                <span class="personnage">dans le rôle de {{ p }}</span>
+              }
+            </span>
             <span class="date">{{ f.dateSortie | date:"dd/MM/yyyy" }}</span>
           </li>
         } @empty {

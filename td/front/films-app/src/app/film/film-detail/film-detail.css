@@ -75,6 +75,19 @@
   color: var(--velours);
 }
 
+.acteurs .acteur {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.acteurs .personnage {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--gris);
+}
+
 .acteurs li.vide {
   justify-content: center;
 }

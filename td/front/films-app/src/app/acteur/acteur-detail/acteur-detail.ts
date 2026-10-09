@@ -6,6 +6,8 @@ import { Observable, catchError, of } from "rxjs";
 import { ActeurService } from "../service/acteur-service";
 import { Acteur } from "../acteur.model";
 import { Film } from "../../film/film.model";
+import { RoleService } from "../../role/service/role-service";
+import { Role } from "../../role/role.model";
 
 @Component({
   selector: "app-acteur-detail",
@@ -16,6 +18,7 @@ import { Film } from "../../film/film.model";
 export class ActeurDetail implements OnInit {
   private service = inject(ActeurService);
   private router = inject(Router);
+  private roleService = inject(RoleService);
 
   id = input.required<string>();
   acteurId = computed(() => Number(this.id()));
@@ -23,6 +26,8 @@ export class ActeurDetail implements OnInit {
 
   acteur$!: Observable<Acteur | null>;
   films$!: Observable<Film[]>;
+  roles = signal<Role[]>([]);
+  personnages = computed(() => new Map(this.roles().map(r => [r.filmId, r.personnage])));
 
   ngOnInit() {
     this.acteur$ = this.service.getById(this.acteurId()).pipe(
@@ -32,6 +37,10 @@ export class ActeurDetail implements OnInit {
       })
     );
     this.films$ = this.service.getFilms(this.acteurId());
+    this.roleService.getByActeur(this.acteurId()).subscribe({
+      next: r => this.roles.set(r),
+      error: () => this.roles.set([])
+    });
   }
 
   supprimer(acteur: Acteur) {

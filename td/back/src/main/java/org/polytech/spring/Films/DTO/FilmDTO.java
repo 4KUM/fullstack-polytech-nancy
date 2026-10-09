@@ -13,6 +13,7 @@ public record FilmDTO(
         String realisateur,
         LocalDate dateSortie,
         Genre genre,
+        String affiche,
         List<ActeurDTO> acteurs,
         List<CommentaireDTO> commentaires
 ) {

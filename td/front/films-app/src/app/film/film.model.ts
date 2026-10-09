@@ -7,6 +7,7 @@ export interface Film {
   realisateur: string;
   dateSortie: string;
   genre: string;
+  affiche: string;
   acteurs: Acteur[];
   commentaires: Commentaire[];
 }

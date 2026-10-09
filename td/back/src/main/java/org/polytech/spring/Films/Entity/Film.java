@@ -33,6 +33,9 @@ public class Film {
     @Column(length = 100)
     private Genre genre;
 
+    @Column(length = 500)
+    private String affiche;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "film_id")
     private List<Commentaire> commentaires = new ArrayList<>();

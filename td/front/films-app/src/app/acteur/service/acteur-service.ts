@@ -37,8 +37,4 @@ export class ActeurService {
       })
     );
   }
-
-  getByFilm(filmId: number): Observable<Acteur[]> {
-    return this.http.get<Acteur[]>(`/api/films/${filmId}/acteurs`);
-  }
 }

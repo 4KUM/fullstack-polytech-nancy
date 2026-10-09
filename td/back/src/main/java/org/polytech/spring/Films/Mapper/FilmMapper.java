@@ -25,6 +25,7 @@ public class FilmMapper {
                 film.getRealisateur(),
                 film.getDateSortie(),
                 film.getGenre(),
+                film.getAffiche(),
                 film.getActeurs().stream()
                         .map(acteurMapper::toDto)
                         .toList(),
@@ -45,5 +46,6 @@ public class FilmMapper {
         film.setRealisateur(dto.realisateur());
         film.setDateSortie(dto.dateSortie());
         film.setGenre(dto.genre());
+        film.setAffiche(dto.affiche());
     }
 }

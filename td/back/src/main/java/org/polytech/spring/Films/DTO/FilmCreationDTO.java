@@ -8,6 +8,7 @@ public record FilmCreationDTO(
         String titre,
         String realisateur,
         LocalDate dateSortie,
-        Genre genre
+        Genre genre,
+        String affiche
 ) {
 }

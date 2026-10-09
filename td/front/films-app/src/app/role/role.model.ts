@@ -1,5 +1,9 @@
+import {Acteur} from '../acteur/acteur.model';
+
 export interface Role {
   id: number;
-  nom: string;
-
+  personnage: string;
+  filmId: number;
+  filmTitre: string;
+  acteur: Acteur;
 }
